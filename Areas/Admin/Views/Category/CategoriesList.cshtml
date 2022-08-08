@@ -17,6 +17,7 @@
             <h4 class="card-title">Data table</h4>
             <div class="row">
                 <div class="col-12">
+                    <a asp-controller="Category" asp-action="AddCategory"><button class="btn btn-success">Add a New Category</button> </a>
                     <table id="order-listing" class="table">
                         <thead>
                             <tr>
@@ -46,8 +47,8 @@
                                 <td>@category.updatedDate</td>  
                                 <td>@category.showInHomePage</td>
                                 <td>@category.currentState</td>
-                                <td> <button class="btn btn-primary">Edit</button></td>
-                                <td> <button class="btn btn-danger">Delete</button></td>
+                                <td> <a asp-controller="Category" asp-action="EditCategory" asp-route-id="@category.categoryId"><button class="btn btn-primary">Edit</button></a></td>
+                                <td> <a asp-controller="Category" asp-action="DeleteCategory" asp-route-id="@category.categoryId"><button class="btn btn-danger">Delete</button></a></td>
                             </tr>
                             }
                         </tbody>

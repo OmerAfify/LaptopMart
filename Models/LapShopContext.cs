@@ -40,17 +40,15 @@ namespace LaptopMart.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-BETTONR; Database=LapShop; Trusted_Connection= True;");
-            }
+            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+            base.OnModelCreating(modelBuilder);
 
+         
+            modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
             modelBuilder.Entity<BusinessInfo>(entity =>
             {
@@ -92,8 +90,7 @@ namespace LaptopMart.Models
                 entity.Property(e => e.createdBy)
                     .IsRequired()
                     .HasDefaultValueSql("(N'')");
-
-                entity.Property(e => e.createdDate).HasDefaultValueSql("('0001-01-01T00:00:00.0000000')");
+                entity.Property(e => e.createdDate).HasDefaultValueSql("getDate()");
 
                 entity.Property(e => e.imageName)
                     .IsRequired()
@@ -103,6 +100,8 @@ namespace LaptopMart.Models
                     .IsRequired()
                     .HasDefaultValueSql("(CONVERT([bit],(0)))");
             });
+
+
 
             modelBuilder.Entity<Customer>(entity =>
             {
