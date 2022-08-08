@@ -1,0 +1,68 @@
+﻿
+@model List<Category>
+
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title"> Categories </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Categories List</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Data table</h4>
+            <div class="row">
+                <div class="col-12">
+                    <table id="order-listing" class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Created By</th>
+                                <th>Creation Date</th>
+                                <th>Updated By</th>
+                                <th>Updated Date</th>
+                                <th>Showed in Home Page?</th>
+                                <th>State</th>
+                                <th></th> <!--Edit-->
+                                <th></th> <!--Delete-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var category in @Model)
+                            {
+                            <tr>
+                                <td>@category.categoryId</td>
+                                <td>@category.imageName</td>
+                                <td>@category.categoryName</td>
+                                <td>@category.createdBy</td>
+                                <td>@category.createdDate</td>
+                                <td>@category.updatedBy
+                                <td>@category.updatedDate</td>  
+                                <td>@category.showInHomePage</td>
+                                <td>@category.currentState</td>
+                                <td> <button class="btn btn-primary">Edit</button></td>
+                                <td> <button class="btn btn-danger">Delete</button></td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section dataTableScripts {
+    <script src="~/Admin/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="~/Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+}
+
+@section scripts {
+    <script src="~/Admin/js/data-table.js"></script>
+}
