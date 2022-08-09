@@ -18,9 +18,10 @@
                     <p class="card-description">Add a new Category form</p>
 
                     <!--form start-->
-                    <form class="forms-sample" asp-controller="Category" asp-action="SaveCategory" method="post" role="form">
-                       
-                        
+                    <form class="forms-sample" asp-controller="Category" asp-action="SaveCategory"
+                          method="post" role="form" enctype="multipart/form-data">
+
+
                         <div class="form-group">
                             <label> Category Name</label>
                             <input type="text" class="form-control" asp-for="categoryName" placeholder="Category Name">
@@ -29,9 +30,12 @@
 
 
                         <div class="form-group">
-                            <label> Image Name</label>
-                            <input type="text" class="form-control" asp-for="imageName" placeholder="Image Name">
-                            <span asp-validation-for="imageName" class="text-danger"></span>
+                            <label> Upload Category's Image </label>
+                            <input type="hidden" asp-for="imageName">
+                            <input asp-for="imageName" type="file"
+                                   name="File" class="form-control"
+                                   placeholder="Upload Image"
+                                   onchange="Upload.UploadDefaultImg(event)">
                         </div>
 
 
@@ -40,7 +44,7 @@
                             <input type="number" class="form-control" asp-for="currentState" placeholder="Current State">
                             <span asp-validation-for="currentState" class="text-danger"></span>
                         </div>
-                      
+
                         <div class="form-check form-check-flat form-check-primary">
 
                             <label class="form-check-label">
@@ -52,14 +56,28 @@
                         </div>
 
                         <input type="hidden" asp-for="categoryId" />
-                            <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
-                            <button class="btn btn-light">Cancel</button>
+                        <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                        <button class="btn btn-light">Cancel</button>
                     </form>
-           <!--form end-->
+                    <!--form end-->
 
                 </div>
             </div>
         </div>
+
+        <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Category's Image</h3>
+                    <br />
+                    <span id="tbImgName">@Model.imageName</span>
+                    <div id="tbImgSrc">
+                        <img src="~/Uploads/Images/CategoryImages/@Model.imageName" style="width:95%; height:50%" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -67,6 +85,9 @@
 @section scripts {
     <!-- Custom js for this page -->
     <script src="~/Admin/js/file-upload.js"></script>
+
+    <script type="text/javascript" src="~/Helpers/Helper.js"></script>
+
     <script src="~/Admin/js/typeahead.js"></script>
     <script src="~/Admin/js/select2.js"></script>
     <!-- End custom js for this page -->

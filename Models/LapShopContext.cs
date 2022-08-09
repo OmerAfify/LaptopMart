@@ -92,9 +92,6 @@ namespace LaptopMart.Models
                     .HasDefaultValueSql("(N'')");
                 entity.Property(e => e.createdDate).HasDefaultValueSql("getDate()");
 
-                entity.Property(e => e.imageName)
-                    .IsRequired()
-                    .HasDefaultValueSql("(N'')");
 
                 entity.Property(e => e.showInHomePage)
                     .IsRequired()

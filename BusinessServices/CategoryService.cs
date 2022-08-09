@@ -66,8 +66,11 @@ namespace LaptopMart.BusinessServices
             {
                 _context.Entry(category).State = EntityState.Modified;
                 category.createdBy = "1";
-                category.imageName = "";
                 category.updatedDate = DateTime.Now;
+
+                if (category.imageName == null)
+                    category.imageName = "";
+
                 _context.SaveChanges();
 
 
