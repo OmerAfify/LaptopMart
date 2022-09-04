@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using LaptopMart.Interfaces.IBusinessServices;
 using LaptopMart.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,27 +12,19 @@ namespace LaptopMart.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private IItemService _itemService;
+        public HomeController(IItemService itemService)
         {
-            _logger = logger;
+            _itemService = itemService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var items = _itemService.GetAllItemsCategoriesView().Take(12).ToList();
+            return View(items);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+      
     }
 }

@@ -1,5 +1,3 @@
-D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\appsettings.Development.json
-D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\appsettings.json
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\LaptopMart.exe
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\LaptopMart.deps.json
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\LaptopMart.runtimeconfig.json
@@ -24,7 +22,6 @@ D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\LaptopMart.TagHelpers.output.cache
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\LaptopMart.RazorCoreGenerate.cache
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -42,11 +39,6 @@ D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_Layout.cshtml.g.cs
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
-D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Areas\LandingPages\Views\Shared\_Layout.cshtml.g.cs
-D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Areas\LandingPages\Views\_ViewImports.cshtml.g.cs
-D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Areas\LandingPages\Views\_ViewStart.cshtml.g.cs
-D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Areas\Admin\Views\Home\Greet.cshtml.g.cs
-D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Areas\Admin\Views\Item\AddLaptop.cshtml.g.cs
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Areas\Admin\Views\Category\AddCategory.cshtml.g.cs
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Areas\Admin\Views\Category\CategoriesList.cshtml.g.cs
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\Humanizer.dll
@@ -81,3 +73,12 @@ D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\appsettings.Development.json
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\appsettings.json
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Areas\Admin\Views\Item\ItemsList.cshtml.g.cs
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\_ItemModal.cshtml.g.cs
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Areas\Admin\Views\Item\AddNewItem.cshtml.g.cs
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Shared\_ProductBox.cshtml.g.cs
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Shared\_Footer.cshtml.g.cs
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Shared\_Header.cshtml.g.cs
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Item\ItemDetails.cshtml.g.cs

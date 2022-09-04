@@ -12,6 +12,6 @@ namespace LaptopMart.Interfaces.IBusinessServices
         public Category GetCategoryById(int id);
         public void UpdateCategory(Category category);
         public void AddCategory(Category category);
-        public void RemoveCategory(int id);
+        public void DeleteCategory(int id);
     }
 }

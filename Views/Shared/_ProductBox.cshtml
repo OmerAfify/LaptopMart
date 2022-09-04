@@ -1,0 +1,40 @@
+﻿
+@model VwItemCategory
+
+ <!--1 product box-->
+<div class="img-wrapper">
+    <div class="front">
+        <a href="product-page(no-sidebar).html">
+            <img src="~/Website/images/marketplace/2.jpg"
+                 class="img-fluid blur-up lazyload bg-img" alt="">
+        </a>
+    </div>
+    <div class="cart-info cart-wrap">
+        <a href="javascript:void(0)" title="Add to Wishlist" tabindex="0">
+            <i class="ti-heart" aria-hidden="true"></i>
+        </a>
+        <a href="#" data-toggle="modal" data-target="#quick-view"
+           title="Quick View" tabindex="0">
+            <i class="ti-search"
+               aria-hidden="true"></i>
+        </a>
+        <a href="compare.html" title="Compare" tabindex="0">
+            <i class="ti-reload"
+               aria-hidden="true"></i>
+        </a>
+    </div>
+    <div class="add-button" data-toggle="modal" data-target="#addtocart">
+        add to
+        cart
+    </div>
+</div>
+<div class="product-detail">
+    <div class="rating">
+        <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+    </div>
+    <a  asp-controller="Item"  asp-action="ItemDetails" asp-route-id="@Model.itemId">
+        <h6>@Model.itemName</h6>
+    </a>
+    <h4>$ @Model.salesPrice</h4>
+</div>
+<!--end of  product box-->

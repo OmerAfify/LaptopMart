@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 #nullable disable
 
@@ -13,6 +14,7 @@ namespace LaptopMart.Models
             items = new HashSet<Item>();
         }
 
+       [ValidateNever]
         public int categoryId { get; set; }
 
         [Required(ErrorMessage = "Please enter category Name")]

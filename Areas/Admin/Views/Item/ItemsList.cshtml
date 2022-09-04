@@ -1,0 +1,123 @@
+﻿
+@model List<VwItemCategory>
+
+
+<div class="content-wrapper">
+
+    <div class="page-header">
+        <h3 class="page-title"> Items List </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Items List</li>
+            </ol>
+        </nav>
+    </div>
+
+
+   
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Items List</h4>
+            <div class="row">
+                <div class="col-12">
+                    <a asp-controller="Item" asp-action="AddNewItem" class="btn btn-success">Add a New Item</a>
+                    <table id="order-listing" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Purchase Price</th>
+                                <th>sales Price</th>
+                                <th></th> <!--Edit-->
+                                <th></th> <!--Delete-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in @Model)
+                            {
+                                <tr>
+                                    <td>@item.itemId</td>
+                                    <td><img style="width:50px; height:50px;" src="@string.Format("/Uploads/Images/ItemImages/{0}",item.imageName)" /></td>
+
+                                    <td class="ItemDetails" 
+                                        data-id="@item.itemId"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal"> @item.itemName </td>
+
+
+                                    <td>@item.categoryName</td>
+                                    <td>@item.purchasePrice</td>
+                                    <td>@item.salesPrice</td>
+                                    <td> <a asp-controller="Item" asp-action="UpdateItem" asp-route-id="@item.itemId" class="btn btn-primary">Edit</a></td>
+                                    <td> <a asp-controller="Item" asp-action="DeleteItem" asp-route-id="@item.itemId" class="btn btn-danger">Delete</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal starts -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Item Details</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success">Edit</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Ends -->
+
+
+
+
+@section scripts {
+
+    <script>
+        $(".ItemDetails").click(function () {
+
+          var $itemClicked = $(this);
+          var id = $itemClicked.attr('data-id');
+
+            $.ajax({
+                url: "@Url.Action("GetItemByIdPartial", "Item")",
+                data: { id: id },
+               success: function (data) {
+
+                   $('.modal-body').html(data);
+                    console.log(data);
+                }
+            });
+      })
+    </script>
+
+
+    <script src="~/admin/js/data-table.js"></script>
+    }
+
+    @section dataTableScripts {
+        <script src="~/Admin/vendors/datatables.net/jquery.dataTables.js"></script>
+        <script src="~/Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    }
+

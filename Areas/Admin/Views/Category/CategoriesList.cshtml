@@ -12,12 +12,14 @@
             </ol>
         </nav>
     </div>
+
+
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Data table</h4>
             <div class="row">
                 <div class="col-12">
-                    <a asp-controller="Category" asp-action="AddCategory"><button class="btn btn-success">Add a New Category</button> </a>
+                    <a asp-controller="Category" asp-action="AddCategory" class="btn btn-success">Add a New Category </a>
                     <table id="order-listing" class="table">
                         <thead>
                             <tr>
@@ -37,20 +39,20 @@
                         <tbody>
                             @foreach (var category in @Model)
                             {
-                            <tr>
-                                
-                                <td>@category.categoryId</td>
-                                <td><img  style="width:50px; height:50px;"   src = "@string.Format("/Uploads/Images/CategoryImages/{0}",category.imageName)" /></td>
-                                <td>@category.categoryName</td>
-                                <td>@category.createdBy</td>
-                                <td>@category.createdDate</td>
-                                <td>@category.updatedBy
-                                <td>@category.updatedDate</td>  
-                                <td>@category.showInHomePage</td>
-                                <td>@category.currentState</td>
-                                <td> <a asp-controller="Category" asp-action="EditCategory" asp-route-id="@category.categoryId"><button class="btn btn-primary">Edit</button></a></td>
-                                <td> <a asp-controller="Category" asp-action="DeleteCategory" asp-route-id="@category.categoryId"><button class="btn btn-danger">Delete</button></a></td>
-                            </tr>
+                                <tr>
+
+                                    <td>@category.categoryId</td>
+                                    <td><img style="width:50px; height:50px;" src="@string.Format("/Uploads/Images/CategoryImages/{0}",category.imageName)" /></td>
+                                    <td>@category.categoryName</td>
+                                    <td>@category.createdBy</td>
+                                    <td>@category.createdDate</td>
+                                    <td>@category.updatedBy
+                                    <td>@category.updatedDate</td>
+                                    <td>@category.showInHomePage</td>
+                                    <td>@category.currentState</td>
+                                    <td> <a asp-controller="Category" asp-action="EditCategory" asp-route-id="@category.categoryId" class="btn btn-primary">Edit </a></td>
+                                    <td> <a asp-controller="Category" asp-action="DeleteCategory" asp-route-id="@category.categoryId" class="btn btn-danger">Delete </a></td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -60,11 +62,13 @@
     </div>
 </div>
 
+
+@section scripts {
+    <script src="~/admin/js/data-table.js"></script>
+}
+
 @section dataTableScripts {
     <script src="~/Admin/vendors/datatables.net/jquery.dataTables.js"></script>
     <script src="~/Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
 }
 
-@section scripts {
-    <script src="~/Admin/js/data-table.js"></script>
-}

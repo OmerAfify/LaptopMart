@@ -36,6 +36,9 @@ namespace LaptopMart
 
 
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IItemService, ItemService>();
+            services.AddScoped<IOsService,OsService>();
+            services.AddScoped<IItemTypeService, ItemTypeService>();
 
 
         }

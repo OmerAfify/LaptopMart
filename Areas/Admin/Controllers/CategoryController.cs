@@ -16,50 +16,41 @@ namespace LaptopMart.Areas.Admin.Controllers
     {
         private ICategoryService _categoryService { get;}
 
-        private UploadingFilesHelper _helper = new UploadingFilesHelper();
         public CategoryController(ICategoryService categoryService)
         {
             _categoryService = categoryService;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-
         public IActionResult CategoriesList()
         {
-            var categories = _categoryService.GetAllCategories().ToList();
+            var categories = _categoryService.GetAllCategories().AsEnumerable()
+                 .OrderByDescending(r => r.createdDate).ToList();
+
             return View(categories);
         }
-
 
         public IActionResult AddCategory()
         {
             return View(new Category());
         } 
-
-
-        
+  
         public IActionResult EditCategory(int id)
         {
-            if(id != null)
+            if(id != 0)
             {
                 Category category = _categoryService.GetCategoryById(id);
                 return View("AddCategory", category);
             }
             else
             {
-                return View();
+                return View("AddCategory");
             }
            
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SaveCategory(Category category, IFormFile File)
+        public  IActionResult SaveCategory(Category category, IFormFile File)
         {
             if (!ModelState.IsValid)
             {
@@ -67,19 +58,16 @@ namespace LaptopMart.Areas.Admin.Controllers
             }
             else {
 
-
-                if(File != null)
+                if (File != null)
                 {
-                  
+                    if (category.imageName != null)
+                    {
+                        UploadingFilesHelper.DeleteImage(@"wwwRoot\Uploads\Images\CategoryImages\", category.imageName);
+                    }
 
-                        if (category.imageName != null)
-                        {
-                            _helper.DeleteImage(@"wwwRoot\Uploads\Images\CategoryImages\", category.imageName);  
-                        }
-
-                    var imageName = await _helper.UploadImage(File, @"wwwRoot\Uploads\Images\CategoryImages");
-                    category.imageName = imageName;
+                    category.imageName = UploadingFilesHelper.UploadImage(File, @"wwwRoot\Uploads\Images\CategoryImages\").Result;
                 }
+
 
                 if (category.categoryId == 0)
                 {
@@ -96,22 +84,20 @@ namespace LaptopMart.Areas.Admin.Controllers
             }
         }
 
-
-        
         public IActionResult DeleteCategory(int id)
         {
-           
-            var img = _categoryService.GetCategoryById(id).imageName;
-            if (img != null)
+
+            var catImg = _categoryService.GetCategoryById(id).imageName;
+
+            if (catImg != null)
             {
-              _helper.DeleteImage(@"wwwRoot\Uploads\Images\CategoryImages\",img);
+              UploadingFilesHelper.DeleteImage(@"wwwRoot\Uploads\Images\CategoryImages\", catImg);
             }
 
-            _categoryService.RemoveCategory(id);
+            _categoryService.DeleteCategory(id);
 
             return RedirectToAction("CategoriesList");
         }
-
 
 
     }

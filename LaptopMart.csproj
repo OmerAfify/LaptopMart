@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\LandingPages\Controllers\" />
     <Folder Include="wwwroot\Admin\" />
     <Folder Include="wwwroot\Uploads\Images\CategoryImages\" />
+    <Folder Include="wwwroot\Uploads\Images\ItemImages\" />
     <Folder Include="wwwroot\Website\" />
   </ItemGroup>
 

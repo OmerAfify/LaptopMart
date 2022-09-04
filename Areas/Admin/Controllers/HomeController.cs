@@ -14,10 +14,6 @@ namespace LaptopMart.Areas.Admin.Controllers
         {
             return View();
         }     
-        
-        public IActionResult Greet()
-        {
-            return View();
-        }
+ 
     }
 }
