@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LaptopMart.Interfaces.IBusinessServices;
+using LaptopMart.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LaptopMart.Controllers
@@ -17,8 +18,13 @@ namespace LaptopMart.Controllers
 
         public IActionResult ItemDetails(int id)
         {
-            var item = _itemService.GetItemById(id);
-            return View(item);
+            var itemDetailsVm = new ItemDetailsPageViewModel()
+            {
+                itemDetails = _itemService.GetItemView(id),
+                recomendedProducts = _itemService.GetRecomendedItems(id).Take(6).ToList()
+
+            };
+           return View(itemDetailsVm);
         }
     }
 }

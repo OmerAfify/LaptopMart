@@ -44,7 +44,19 @@ namespace LaptopMart.BusinessServices
             }
         }
 
+        public VwItem GetItemView(int id)
+        {
+            try
+            {
+                var itemView = _context.VwItems.Where(i=>i.itemId == id).FirstOrDefault();
+                return itemView;
+            }
+            catch (Exception ex)
+            {
+                return new VwItem();
+            }
 
+        }
         public Item GetItemById(int id)
         {
             try
@@ -71,6 +83,28 @@ namespace LaptopMart.BusinessServices
             {
                 return null;
             }
+        }
+
+        
+        //logic is getting products with range ' price-50 < price < price + 50 ' as well as of the same category.
+        public IEnumerable<Item> GetRecomendedItems(int id)
+        {
+            try
+            {
+                var price = this.GetItemById(id).salesPrice;
+                var categoryId = this.GetItemById(id).categoryId;
+                var RecomendedItemsList = _context.TbItems.Where(c => (c.itemId !=id) &&
+                (c.salesPrice > price-50 && c.salesPrice< price+50 ) &&
+                (c.categoryId == categoryId));
+
+                return RecomendedItemsList;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
         }
 
         public void AddItem(Item Item)

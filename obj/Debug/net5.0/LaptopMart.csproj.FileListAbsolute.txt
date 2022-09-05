@@ -82,3 +82,7 @@ D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Shared\_Footer.cshtml.g.cs
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Shared\_Header.cshtml.g.cs
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Item\ItemDetails.cshtml.g.cs
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\LaptopMart.Resources.ProductResources.ProductDetailsResource.resources
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\LaptopMart.Resources.WebsiteResource.resources
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\LaptopMart.csproj.GenerateResource.cache
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Shared\_ProductBox2.cshtml.g.cs

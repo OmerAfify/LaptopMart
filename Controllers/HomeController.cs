@@ -21,7 +21,7 @@ namespace LaptopMart.Controllers
 
         public IActionResult Index()
         {
-            var items = _itemService.GetAllItemsCategoriesView().Take(12).ToList();
+            var items = _itemService.GetAllItems().Take(12).ToList();
             return View(items);
         }
 

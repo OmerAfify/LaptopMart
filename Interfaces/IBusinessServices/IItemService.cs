@@ -11,6 +11,9 @@ namespace LaptopMart.Interfaces.IBusinessServices
          
             public IEnumerable<Item> GetAllItems();
             public IEnumerable<VwItemCategory> GetAllItemsCategoriesView();
+            public VwItem GetItemView(int id);
+
+            public IEnumerable<Item> GetRecomendedItems(int id);
             public Item GetItemById(int id);
             public  Task<Item> GetItemByIdAsync(int id);
      
