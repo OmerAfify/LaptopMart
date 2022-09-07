@@ -47,8 +47,15 @@ using LaptopMart.Resources.ProductResources;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\Views\_ViewImports.cshtml"
+using LaptopMart.Resources.ShoppingCartResources;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7091c65830b0329e613be026ede8a57552863778", @"/Views/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"fb2d268f491f2f9fed03932398fcb9fb6ccd7256", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3bcc43632541d0dcb7bff99df969ca553f762285", @"/Views/_ViewImports.cshtml")]
     public class Views__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

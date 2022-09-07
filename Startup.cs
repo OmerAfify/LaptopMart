@@ -34,7 +34,12 @@ namespace LaptopMart
                 ));
 
 
+            //session usage
+            services.AddSession();
+            services.AddHttpContextAccessor();
+            services.AddDistributedMemoryCache();
 
+            //DI registeraation
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IItemService, ItemService>();
             services.AddScoped<IOsService,OsService>();
@@ -69,6 +74,7 @@ namespace LaptopMart
 
             app.UseAuthorization();
 
+            app.UseSession();
           
             
             app.UseEndpoints(endpoints =>

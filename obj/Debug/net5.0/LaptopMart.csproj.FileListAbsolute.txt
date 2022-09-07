@@ -86,3 +86,8 @@ D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\LaptopMart.Resources.WebsiteResource.resources
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\LaptopMart.csproj.GenerateResource.cache
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Shared\_ProductBox2.cshtml.g.cs
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\LaptopMart.Resources.ShoppingCartResources.ShoppingCartResource.resources
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\ShoppingCart\Cart.cshtml.g.cs
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

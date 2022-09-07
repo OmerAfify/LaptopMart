@@ -1,0 +1,121 @@
+﻿
+@model ShoppingCart
+
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>Cart</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active">Shopping cart</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!--section start-->
+<section class="cart-section section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table cart-table table-responsive-xs">
+                    <thead>
+                        <tr class="table-head">
+                            <th scope="col">@ShoppingCartResource.itemImg</th>
+                            <th scope="col">@ShoppingCartResource.itemName</th>
+                            <th scope="col">@ShoppingCartResource.itemPrice</th>
+                            <th scope="col">@ShoppingCartResource.totalItemQty</th>
+                            <th scope="col">@ShoppingCartResource.deleteItem</th>
+                            <th scope="col">@ShoppingCartResource.totalItemPrice</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        @foreach(var item in Model.cartItemsList) { 
+                        <tr class="cart-item-row">
+                            <td>
+                                <a href="#"><img src="~/Website/images/pro3/1.jpg" alt=""></a>
+                            </td>
+                            <td>
+                                <a href="#">@item.itemName</a>
+                                <div class="mobile-cart-content row">
+                                    <div class="col-xs-3">
+                                        <div class="qty-box">
+                                            <div class="input-group">
+                                                <input type="text" name="quantity" class="form-control input-number"
+                                                       value="@item.totalQty">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <h2 class="td-color">$ @item.itemPrice</h2>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <h2 class="td-color">
+                                            <a href="#" class="icon"><i class="ti-close"></i></a>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <h2>$ @item.itemPrice</h2>
+                            </td>
+                            <td>
+                                <div class="qty-box">
+                                    <div class="input-group">
+
+                                        <input type="number" name="quantity"  
+                                               class="form-control input-number totalItemQty"
+                                               data-itemprice="@item.itemPrice" 
+                                               data-itemid="@item.itemId" 
+                                               onchange="onQtyChange(this)"
+                                               value="@item.totalQty">
+                                    </div>
+                                </div>
+                            </td>
+                            <td><a href="#"  class="icon"><i class="ti-close"></i></a></td>
+                            <td>
+                                <h2 class="td-color">$ <span class="totalItemPrice">@item.totalPrice</span></h2>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+                <table class="table cart-table table-responsive-md">
+                    <tfoot>
+                        <tr>
+                            <td>@ShoppingCartResource.totalShoppingCartQty :</td>
+                            <td>
+                                <h2> <span id="totalShoppingCartQty">@Model.totalShoppingCartQty</span> </h2>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td>@ShoppingCartResource.totalShoppingCartPrice :</td>
+                            <td>
+                                <h2>$ <span id="totalShoppingCartPrice">@Model.totalShoppingCartPrice</span> </h2>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="row cart-buttons">
+            <div class="col-6"><a href="#" class="btn btn-solid">continue shopping</a></div>
+            <div class="col-6"><a href="#" class="btn btn-solid">check out</a></div>
+        </div>
+    </div>
+</section>
+<!--section end-->
+
+@section scripts {
+<script src="~/Helpers/ShoppingCartHelper.js"></script>
+
+}
