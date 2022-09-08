@@ -1,0 +1,102 @@
+﻿
+@model RegisterUser
+
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>create account</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">create account</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!--section start-->
+
+
+
+
+<section class="register-page section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>create account</h3>
+
+                @if (ViewBag.errors != null)
+                {
+                    <ul>
+                        @foreach (var error in @ViewBag.errors)
+                        {
+                            <li style="color:red">
+                                @error.Description<br />
+                            </li>
+                            
+                        }
+                    </ul>
+
+                }
+
+
+                 <div class="theme-card">
+
+
+                    <form asp-controller="User" asp-action="Register" method="post" role="form" class="theme-form">
+
+                        <div class="form-row">
+                            <div class="col-md-6" style='margin-bottom:15px'>
+                                <label for="email">First Name</label>
+                                <input type="text" class="form-control" asp-for="@Model.firstName" placeholder="First Name"
+                                       required style='margin:5px'>
+                                <span asp-validation-for="@Model.firstName" class="text-danger"></span>
+
+                            </div>
+                            <div class="col-md-6" style='margin-bottom:15px'>
+                                <label for="review">Last Name</label>
+                                <input type="text" class="form-control" asp-for="@Model.lastName" id="lname" placeholder="Last Name"
+                                       required style='margin:5px'>
+                                <span asp-validation-for="@Model.lastName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6" style='margin-bottom:15px'>
+                                <label for="email">E-mail</label>
+                                <input type="text" class="form-control" asp-for="@Model.email" id="email"
+                                       placeholder="Email" required style='margin:5px'>
+
+                                <span asp-validation-for="@Model.email" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6" style='margin-bottom:15px'>
+                                <label for="review">Password</label>
+                                <input type="password" class="form-control" id="review" asp-for="@Model.password"
+                                       placeholder="Enter your password" required style='margin:5px'>
+                                <span asp-validation-for="@Model.password" class="text-danger"></span>
+
+                            </div><button type="submit" class="btn btn-solid">create Account</button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Section ends-->
+
+@section jqueryValidation{
+    <!--j-query validation-->
+    <script src="~/Admin/vendors/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/Admin/vendors/jquery.validate.unobtrusive.min.js_3.2.11/cdnjs/jquery.validate.unobtrusive.min.js"></script>
+    <!--j-query validation-->
+}

@@ -6,12 +6,14 @@ using LaptopMart.BusinessServices;
 using LaptopMart.Helpers;
 using LaptopMart.Interfaces.IBusinessServices;
 using LaptopMart.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LaptopMart.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class ItemController : Controller
     {
         private IItemService _itemService;

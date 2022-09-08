@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using LaptopMart.Helpers;
 using LaptopMart.Interfaces.IBusinessServices;
 using LaptopMart.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,7 @@ namespace LaptopMart.Areas.Admin.Controllers
 {
 
     [Area("admin")]
+    [Authorize(Roles ="Admin")]
     public class CategoryController : Controller
     {
         private ICategoryService _categoryService { get;}

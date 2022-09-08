@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -6,15 +7,17 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace LaptopMart.Models
 {
-    public partial class LapShopContext : DbContext
+    public partial class LapShopContext : IdentityDbContext<MyApplicationUser>
     {
         public LapShopContext()
         {
+
         }
 
         public LapShopContext(DbContextOptions<LapShopContext> options)
             : base(options)
         {
+
         }
 
         public virtual DbSet<BusinessInfo> TbBusinessInfos { get; set; }

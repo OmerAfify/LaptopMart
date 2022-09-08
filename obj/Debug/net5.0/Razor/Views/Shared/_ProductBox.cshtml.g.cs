@@ -54,8 +54,15 @@ using LaptopMart.Resources.ShoppingCartResources;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 7 "D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"91c11dac7752eebc0e3249ce301612703098cb9b", @"/Views/Shared/_ProductBox.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3bcc43632541d0dcb7bff99df969ca553f762285", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"30bf39994b95c3df65a1dfbeb77ff83be5b71e9f", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__ProductBox : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Item>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("src", new global::Microsoft.AspNetCore.Html.HtmlString("~/Website/images/marketplace/2.jpg"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -93,7 +100,7 @@ using LaptopMart.Resources.ShoppingCartResources;
         {
             WriteLiteral("\r\n");
             WriteLiteral("\r\n <!--1 product box-->\r\n<div class=\"img-wrapper\">\r\n    <div class=\"front\">\r\n        <a href=\"product-page(no-sidebar).html\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "91c11dac7752eebc0e3249ce301612703098cb9b7161", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "91c11dac7752eebc0e3249ce301612703098cb9b7397", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -126,7 +133,7 @@ using LaptopMart.Resources.ShoppingCartResources;
         </a>
     </div>
     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "91c11dac7752eebc0e3249ce301612703098cb9b8971", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "91c11dac7752eebc0e3249ce301612703098cb9b9207", async() => {
                 WriteLiteral("\r\n        add to\r\n        cart\r\n    ");
             }
             );
@@ -160,7 +167,7 @@ using LaptopMart.Resources.ShoppingCartResources;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n</div>\r\n<div class=\"product-detail\">\r\n    <div class=\"rating\">\r\n        <i class=\"fa fa-star\"></i> <i class=\"fa fa-star\"></i> <i class=\"fa fa-star\"></i> <i class=\"fa fa-star\"></i> <i class=\"fa fa-star\"></i>\r\n    </div>\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "91c11dac7752eebc0e3249ce301612703098cb9b11784", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "91c11dac7752eebc0e3249ce301612703098cb9b12020", async() => {
                 WriteLiteral("\r\n        <h6>");
 #nullable restore
 #line 36 "D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\Views\Shared\_ProductBox.cshtml"

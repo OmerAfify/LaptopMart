@@ -1,0 +1,86 @@
+﻿@model LoginUser
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>customer's login</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active">login</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!--section start-->
+<section class="login-page section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>Login</h3>
+
+                @if (ViewBag.errors != null)
+                {
+                    <ul>
+                        @foreach (var error in @ViewBag.errors)
+                        {
+                            <li style="color:red">
+                                @error<br />
+                            </li>
+                            
+                        }
+                    </ul>
+
+                }
+
+                <div class="theme-card">
+
+                    <form class="theme-form" method="post" role="form" asp-controller="User" asp-action="Login">
+                        <div class="form-group" >
+                            <label for="email">Email</label>
+                            <input style='margin-bottom:0px' type="email" asp-for="@Model.email" class="form-control" id="email" placeholder="Email" required>
+                            <span asp-validation-for="@Model.email" class="text-danger" ></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="review">Password</label>
+                            <input style='margin-bottom:0px' type="password" class="form-control" id="review"
+                                   asp-for="@Model.password" placeholder="Enter your password" required>
+                            <span asp-validation-for="@Model.password" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-solid" asp-route-returnUrl="@Context.Request.Query["ReturnUrl"]">Login</button>
+                    </form>
+
+
+                </div>
+            </div>
+            <div class="col-lg-6 right-login">
+                <h3>New Customer</h3>
+                <div class="theme-card authentication-right">
+                    <h6 class="title-font">Create A Account</h6>
+                    <p>
+                        Sign up for a free account at our store. Registration is quick and easy. It allows you to be
+                        able to order from our shop. To start shopping click register.
+                    </p>
+                    <a asp-controller="User" asp-action="Register" class="btn btn-solid">Create an Account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Section ends-->
+
+
+@section jqueryValidation{
+    <!--j-query validation-->
+    <script src="~/Admin/vendors/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/Admin/vendors/jquery.validate.unobtrusive.min.js_3.2.11/cdnjs/jquery.validate.unobtrusive.min.js"></script>
+    <!--j-query validation-->
+}

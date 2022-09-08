@@ -1,4 +1,7 @@
-﻿    <!-- loader start -->
+﻿
+@inject SignInManager<MyApplicationUser> signInManager;
+
+<!-- loader start -->
 <div class="loader_skeleton">
     <header class="header-tools marketplace">
         <div class="top-header d-none d-sm-block">
@@ -19,7 +22,7 @@
                             </li>
                             <li class="onhover-dropdown mobile-account">
                                 <i class="fa fa-user" aria-hidden="true"></i>
-                                My Account
+                                    Account
                             </li>
                         </ul>
                     </div>
@@ -293,17 +296,46 @@
                 </div>
                 <div class="col-lg-6 text-right">
                     <ul class="header-dropdown">
+
                         <li class="mobile-wishlist">
                             <a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
                         </li>
-                        <li class="onhover-dropdown mobile-account">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            My Account
-                            <ul class="onhover-show-div">
-                                <li><a href="#" data-lng="en">Login</a></li>
-                                <li><a href="#" data-lng="es">Logout</a></li>
-                            </ul>
-                        </li>
+
+                        @if (!signInManager.IsSignedIn(User))
+                        {
+                            <li class="onhover-dropdown mobile-account">
+
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                My Account
+                                <ul class="onhover-show-div">
+
+                                    <li><a asp-controller="User" asp-action="Login" data-lng="en">Login</a></li>
+                                    <li><a asp-controller="User" asp-action="Register" data-lng="en">Register</a></li>
+                                   
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                    <li class="onhover-dropdown mobile-account">
+
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        Welcome @User.Identity.Name !
+                        &nbsp &nbsp &nbsp &nbsp
+                        <ul class="onhover-show-div">
+
+                            <li><a asp-controller="User" asp-action="Logout" data-lng="es">Logout</a></li>
+
+                        </ul>
+                    </li>
+
+
+
+                        }
+
+
+
+
                     </ul>
                 </div>
             </div>

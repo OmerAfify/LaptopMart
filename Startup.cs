@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using LaptopMart.BusinessServices;
 using LaptopMart.Interfaces.IBusinessServices;
 using LaptopMart.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,12 +41,34 @@ namespace LaptopMart
             services.AddHttpContextAccessor();
             services.AddDistributedMemoryCache();
 
+        
+
+
+            //identity config
+            services.AddIdentity<MyApplicationUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<LapShopContext>();
+
             //DI registeraation
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IItemService, ItemService>();
             services.AddScoped<IOsService,OsService>();
             services.AddScoped<IItemTypeService, ItemTypeService>();
 
+
+
+            services.ConfigureApplicationCookie(options => {
+
+                options.AccessDeniedPath = "/User/AccessDenied";
+                options.Cookie.Name = "LaptopMartCookie";
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(720);
+                options.LoginPath = "/User/Login";
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.SlidingExpiration = true;
+
+            });
 
         }
 
@@ -64,7 +88,6 @@ namespace LaptopMart
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -72,6 +95,7 @@ namespace LaptopMart
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSession();
@@ -79,8 +103,6 @@ namespace LaptopMart
             
             app.UseEndpoints(endpoints =>
             {
-
-
                 endpoints.MapControllerRoute(
                     name: "Admin",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}");

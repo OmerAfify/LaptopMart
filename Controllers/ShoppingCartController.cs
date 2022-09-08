@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LaptopMart.Interfaces.IBusinessServices;
 using LaptopMart.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -18,6 +19,7 @@ namespace LaptopMart.Controllers
             _itemService = itemService;
         }
        
+        [Authorize]
         public IActionResult Cart()
         {
             var shoppingCart = new ShoppingCart() { cartItemsList = new List<CartItem>() };
