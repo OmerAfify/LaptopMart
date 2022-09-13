@@ -6,28 +6,46 @@ using LaptopMart.Interfaces.IBusinessServices;
 using LaptopMart.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Security.Claims;
 
 namespace LaptopMart.Controllers
 {
     public class ShoppingCartController : Controller
     {
         private IItemService _itemService;
-        public ShoppingCartController(IItemService itemService)
+        private UserManager<MyApplicationUser> _userManager;
+     
+
+        public ShoppingCartController(IItemService itemService, UserManager<MyApplicationUser> userManager)
         {
+            _userManager = userManager;
             _itemService = itemService;
+
+
         }
-       
-        [Authorize]
+
+
+
         public IActionResult Cart()
         {
             var shoppingCart = new ShoppingCart() { cartItemsList = new List<CartItem>() };
-          
-            var session = HttpContext.Session.GetString("Cart");
 
-            if (session != null)
-                shoppingCart = JsonConvert.DeserializeObject<ShoppingCart>(session);
+            string state = null;
+
+            if (User.FindFirstValue(ClaimTypes.Email) == null)
+            {
+                state = HttpContext.Request.Cookies["shoppingCart"];
+            }
+            else { 
+                state = HttpContext.Session.GetString(User.FindFirstValue(ClaimTypes.Email));
+            }
+
+          
+            if (state != null)
+                shoppingCart = JsonConvert.DeserializeObject<ShoppingCart>(state);
            
             return View(shoppingCart);
         }
@@ -35,16 +53,27 @@ namespace LaptopMart.Controllers
 
         public IActionResult AddToCart(int id)
         {
-            var session = HttpContext.Session.GetString("Cart");
-   
+
+            string state = null;
+
+            if (User.FindFirstValue(ClaimTypes.Email) == null)
+            {
+                state = HttpContext.Request.Cookies["shoppingCart"];
+            }
+            else
+            {
+                state = HttpContext.Session.GetString(User.FindFirstValue(ClaimTypes.Email));
+            }
+
+
             var shoppingCart = new ShoppingCart() { cartItemsList = new List<CartItem>() };
 
             var itemToAdd = _itemService.GetItemById(id);
 
 
-            if (session != null)
+            if (state != null)
             {
-                shoppingCart = JsonConvert.DeserializeObject<ShoppingCart>(session);
+                shoppingCart = JsonConvert.DeserializeObject<ShoppingCart>(state);
 
                 var cartItem = shoppingCart.cartItemsList.Where(i => i.itemId == id).FirstOrDefault();
 
@@ -67,7 +96,14 @@ namespace LaptopMart.Controllers
             shoppingCart.totalShoppingCartQty = shoppingCart.cartItemsList.Sum(q => q.totalQty);
             shoppingCart.totalShoppingCartPrice = shoppingCart.cartItemsList.Sum(p => p.totalPrice);
 
-            HttpContext.Session.SetString("Cart",  JsonConvert.SerializeObject(shoppingCart)  );
+
+            if (User.FindFirstValue(ClaimTypes.Email) != null) { 
+                HttpContext.Session.SetString(User.FindFirstValue(ClaimTypes.Email),JsonConvert.SerializeObject(shoppingCart)  );
+            }
+            else
+            {
+                HttpContext.Response.Cookies.Append("shoppingCart", JsonConvert.SerializeObject(shoppingCart));
+            }
 
             return RedirectToAction("Cart");
 
@@ -87,6 +123,8 @@ namespace LaptopMart.Controllers
             };
 
         }
+
+
 
 
 

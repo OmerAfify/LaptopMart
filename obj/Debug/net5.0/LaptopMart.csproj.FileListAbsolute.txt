@@ -99,3 +99,6 @@ D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\User\Login.cshtml.g.cs
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\User\Register.cshtml.g.cs
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\User\AccessDenied.cshtml.g.cs
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Order\Checkout.cshtml.g.cs
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Order\OrderSuccess.cshtml.g.cs
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Order\OrderDetails.cshtml.g.cs

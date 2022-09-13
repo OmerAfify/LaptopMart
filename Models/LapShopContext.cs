@@ -41,6 +41,16 @@ namespace LaptopMart.Models
         public virtual DbSet<VwItemsOutOfInvoice> VwItemsOutOfInvoices { get; set; }
         public virtual DbSet<VwSalesInvoice> VwSalesInvoices { get; set; }
 
+
+        //orders
+        public virtual DbSet<Order> Tb_Orders { get; set; }
+        public virtual DbSet<OrderItem> Tb_OrderItem { get; set; }
+        public virtual DbSet<Payement> Tb_Payement { get; set; }
+        public virtual DbSet<ShippingInfo> Tb_ShippingInfo { get; set; }
+
+        //View
+        public virtual DbSet<VwOrderDetails> VwOrderDetails { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -100,7 +110,6 @@ namespace LaptopMart.Models
                     .IsRequired()
                     .HasDefaultValueSql("(CONVERT([bit],(0)))");
             });
-
 
 
             modelBuilder.Entity<Customer>(entity =>
@@ -408,6 +417,52 @@ namespace LaptopMart.Models
 
                 entity.Property(e => e.invoiceDate).HasColumnType("datetime");
             });
+
+            //order config 
+
+            modelBuilder.Entity<Order>(entity =>
+            {
+                entity.HasKey(k => k.orderId);
+
+
+            });
+            
+            modelBuilder.Entity<OrderItem>(entity =>
+            {
+                entity.HasKey(k => new { k.orderId , k.itemId});
+
+                entity.HasOne(i => i.order).WithMany(o => o.orderItems).HasForeignKey(f => f.orderId)
+                .OnDelete(DeleteBehavior.Cascade);
+                
+                entity.HasOne(i => i.item).WithMany(o => o.OrderItems).HasForeignKey(f => f.itemId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
+            });
+            
+            
+            modelBuilder.Entity<ShippingInfo>(entity =>
+            {
+
+                entity.HasOne(i => i.user).WithMany(o => o.shippingInfoList).HasForeignKey(f => f.userId);
+ 
+
+            });
+
+
+            //end of order config
+
+
+            //view cofig
+            modelBuilder.Entity<VwOrderDetails>(entity =>
+            {
+
+                entity.HasNoKey();
+                entity.ToView("VwOrderDetails");
+
+            });
+
+
 
             OnModelCreatingPartial(modelBuilder);
         }

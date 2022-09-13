@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using LaptopMart.Interfaces.IBusinessServices;
 using LaptopMart.Models;
@@ -22,6 +23,7 @@ namespace LaptopMart.Controllers
         public IActionResult Index()
         {
             var items = _itemService.GetAllItems().Take(12).ToList();
+            ViewBag.user = User.FindFirstValue(ClaimTypes.Email);
             return View(items);
         }
 

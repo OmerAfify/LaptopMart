@@ -1,0 +1,161 @@
+﻿@model CheckoutPageViewModel
+
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>Check-out</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Check-out</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!-- section start -->
+<section class="section-b-space">
+    <div class="container">
+        <div class="checkout-page">
+            <div class="checkout-form">
+
+                <h1>Val sum is </h1>
+                <div asp-validation-summary="All"></div>
+
+                <form method="post" role="form" asp-controller="Order" asp-action="SaveOrder">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-12 col-xs-12">
+                            <div class="checkout-title">
+                                <h3>Billing Details</h3>
+                            </div>
+                            <div class="row check-out">
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                    <div class="field-label">First Name</div>
+                                    <input asp-for="shippingInfo.firstName" type="text" placeholder="">
+                                    <span asp-validation-for="shippingInfo.firstName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                    <div class="field-label">Last Name</div>
+                                    <input asp-for="shippingInfo.lastName" type="text" placeholder="">
+                                    <span asp-validation-for="shippingInfo.lastName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                    <div class="field-label">Phone</div>
+                                    <input type="text" asp-for="shippingInfo.phoneNo" placeholder="" required>
+                                    <span asp-validation-for="shippingInfo.phoneNo" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                    <div class="field-label">Country</div>
+                                    <input type="text" asp-for="shippingInfo.Country" placeholder="" required>
+                                    <span asp-validation-for="shippingInfo.Country" class="text-danger"></span>
+
+                                </div>
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                    <div class="field-label">Town/City</div>
+                                    <input type="text" asp-for="shippingInfo.city" placeholder="">
+                                    <span asp-validation-for="shippingInfo.city" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                    <div class="field-label">Address</div>
+                                    <input type="text" asp-for="shippingInfo.Address" placeholder="Street address">
+                                    <span asp-validation-for="shippingInfo.Address" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-12 col-sm-6 col-xs-12">
+                                    <div class="field-label">Department Number</div>
+                                    <input type="number" asp-for="shippingInfo.DeptNo" placeholder="">
+                                    <span asp-validation-for="shippingInfo.DeptNo" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12 col-xs-12">
+                            <div class="checkout-details">
+                                <div class="order-box">
+                                    <div class="title-box">
+                                        <div>Product  <span>Total</span> <span>Quantity</span> </div>
+                                    </div>
+
+                                    <ul class="qty">
+                                        <!--repeat here item li -->
+                                        @foreach (var item in Model.shoppingCart.cartItemsList)
+                                        {
+
+                                            <li>@item.itemName <span>$ @item.totalPrice</span> <span>@item.totalQty</span> </li>
+                                        }
+
+
+                                    </ul>
+
+                                    <ul class="sub-total">
+                                        <li>Subtotal <span class="count">$ @Model.shoppingCart.totalShoppingCartPrice</span></li>
+                                    </ul>
+                                    <ul class="total">
+                                        <li>Total Quantity <span class="count">@Model.shoppingCart.totalShoppingCartQty</span></li>
+                                    </ul>
+                                    <ul class="total">
+                                        <li>Total Price<span class="count">$ @(Model.shoppingCart.totalShoppingCartPrice + 50 )</span></li>
+                                    </ul>
+                                </div>
+                                <div class="payment-box">
+                                    <div class="upper-box">
+                                        <div class="payment-options">
+                                            <input type="number" asp-for="@Model.payementId" />
+                                            @*<ul>
+                                                <li>
+                                                    <div class="radio-option">
+                                                        <input type="radio" name="payment-group" id="payment-2">
+                                                        <label for="payment-2">
+                                                            Cash On Delivery<span class="small-text">
+                                                                Please send a check to Store
+                                                                Name, Store Street, Store Town, Store State /
+                                                                County, Store Postcode.
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="radio-option paypal">
+                                                        <input type="radio" name="payment-group" id="payment-3">
+                                                        <label for="payment-3">
+                                                            PayPal<span class="image">
+                                                                <img src="~/Website/images/paypal.png"
+                                                                     alt="">
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                            </ul>*@
+                                        </div>
+                                    </div>
+                                    <div class="text-right"><button type="submit" class="btn-solid btn">Place Order</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                  <input type="hidden" asp-for="shippingInfo.shippingInfoId" />
+                  <input type="hidden" asp-for="shippingInfo.userId" />
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- section end -->
+
+
+@section jqueryValidation{
+    <!--j-query validation-->
+    <script src="~/Admin/vendors/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/Admin/vendors/jquery.validate.unobtrusive.min.js_3.2.11/cdnjs/jquery.validate.unobtrusive.min.js"></script>
+    <!--j-query validation-->
+}

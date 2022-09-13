@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LaptopMart.Business_Services;
 using LaptopMart.BusinessServices;
 using LaptopMart.Interfaces.IBusinessServices;
 using LaptopMart.Models;
@@ -55,6 +56,12 @@ namespace LaptopMart
             services.AddScoped<IItemService, ItemService>();
             services.AddScoped<IOsService,OsService>();
             services.AddScoped<IItemTypeService, ItemTypeService>();
+
+
+            services.AddScoped<IOrderItemService, OrderItemService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IShippingInfoService, ShippingInfoService>();
+            services.AddScoped<IPayementService, PayementService>();
 
 
 

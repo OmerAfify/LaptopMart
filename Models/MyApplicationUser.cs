@@ -10,5 +10,7 @@ namespace LaptopMart.Models
     {
         public string firstName{ get; set; }
         public string lastName{ get; set; }
+
+        public List<ShippingInfo> shippingInfoList { get; set; }
     }
 }

@@ -1,0 +1,123 @@
+﻿@model List<OrderDetailsPageViewModel>
+
+ <!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>customer's Orders</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active">Orders</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!-- order-detail section start -->
+<section class="section-b-space">
+    <div class="container">
+      
+        <!--loop here-->
+        @foreach(var order in Model) { 
+        <div class="row" style="margin-bottom:150px">
+            <div class="col-lg-6">
+                <div class="product-order">
+                    <h3>Order No : @order.order.orderId </h3>
+
+                    <!--loop through div class row prod order detail-->
+                    @foreach(var orderedItem in order.orderedItems) { 
+                    <div class="row product-order-detail">
+                        <div class="col-3">
+                            <img src="~/Website/images/pro3/1.jpg" alt=""
+                                 class="img-fluid blur-up lazyload">
+                        </div>
+                        <div class="col-3 order_detail">
+                            <div>
+                                <h4>product name</h4>
+                                <h5>@orderedItem.item.itemName</h5>
+                            </div>
+                        </div>
+                        <div class="col-3 order_detail">
+                            <div>
+                                <h4>quantity</h4>
+                                <h5>@orderedItem.totalQty</h5>
+                            </div>
+                        </div>
+                        <div class="col-3 order_detail">
+                            <div>
+                                <h4>price</h4>
+                                <h5>$ @orderedItem.totalPrice</h5>
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+
+                    <div class="total-sec">
+                        <ul>
+                            <li>subtotal <span>$ @order.order.totalOrderPrice</span></li>
+                            <li>shipping <span>$ 100</span></li>
+
+                        </ul>
+                    </div>
+                    <div class="final-total">
+                        <h3>total Quantity <span>@order.order.totalOrderQty</span></h3>
+                    </div>
+                    <div class="final-total">
+                        <h3>total Price <span>$ @order.order.totalOrderPrice</span></h3>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row order-success-sec">
+                    <div class="col-sm-6">
+                        <h4>summery</h4>
+                        <ul class="order-detail">
+                            <li>For Mr/s : @order.order.firstName @order.order.lastName </li>
+                            <li>order ID: @order.order.orderId</li>
+                            <li>Order Date: @order.order.orderDate</li>
+                            <li> </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4>shipping address</h4>
+                        <ul class="order-detail">
+                            <li>Country :  @order.order.Country</li>
+                            <li>City: @order.order.City</li>
+                            <li>Address : @order.order.Address</li>
+                            <li>Contact No :  @order.order.phoneNo</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12 payment-mode">
+                        <h4>payment method</h4>
+                        <p>
+                            @order.order.PayementType
+                        </p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="delivery-sec">
+                            <h3>expected date of delivery</h3>
+                            <h2>@order.order.DeliveryDate</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+        }
+
+
+    </div>
+</section>
+<!-- Section ends -->

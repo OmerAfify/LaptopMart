@@ -67,5 +67,6 @@ namespace LaptopMart.Models
         public virtual ICollection<ItemImage> itemImages { get; set; }
         public virtual ICollection<PurchaseInvoiceItem> purchaseInvoiceItems { get; set; }
         public virtual ICollection<salesInvoiceItem> salesInvoiceItems { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }

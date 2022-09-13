@@ -4,14 +4,16 @@ using LaptopMart.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LaptopMart.Migrations
 {
     [DbContext(typeof(LapShopContext))]
-    partial class LapShopContextModelSnapshot : ModelSnapshot
+    [Migration("20220909132718_orderingTablesAreAdded")]
+    partial class orderingTablesAreAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -460,6 +462,15 @@ namespace LaptopMart.Migrations
                     b.Property<int>("itemId")
                         .HasColumnType("int");
 
+                    b.Property<string>("imageName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("itemName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("itemPrice")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal>("totalPrice")
                         .HasColumnType("decimal(18,2)");
 
@@ -552,18 +563,15 @@ namespace LaptopMart.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("DeptNo")
                         .HasColumnType("int");
 
                     b.Property<string>("city")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("firstName")
@@ -572,11 +580,7 @@ namespace LaptopMart.Migrations
                     b.Property<string>("lastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("phoneNo")
-                        .HasColumnType("int");
-
                     b.Property<string>("userId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("shippingInfoId");
@@ -740,50 +744,6 @@ namespace LaptopMart.Migrations
                         .HasColumnType("decimal(8,2)");
 
                     b.ToView("VwItemsOutOfInvoices");
-                });
-
-            modelBuilder.Entity("LaptopMart.Models.VwOrderDetails", b =>
-                {
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DeliveryDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DeptNo")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PayementType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("firstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("lastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("orderDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("phoneNo")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("totalOrderPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("totalOrderQty")
-                        .HasColumnType("int");
-
-                    b.ToView("VwOrderDetails");
                 });
 
             modelBuilder.Entity("LaptopMart.Models.VwSalesInvoice", b =>
@@ -1204,9 +1164,7 @@ namespace LaptopMart.Migrations
                 {
                     b.HasOne("LaptopMart.Models.MyApplicationUser", "user")
                         .WithMany("shippingInfoList")
-                        .HasForeignKey("userId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("userId");
 
                     b.Navigation("user");
                 });

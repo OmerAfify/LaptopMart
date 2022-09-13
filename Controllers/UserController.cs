@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using LaptopMart.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -48,6 +50,7 @@ namespace LaptopMart.Controllers
 
 
                     await _signInManager.PasswordSignInAsync(user.email, user.password, true, false);
+             
                     return Redirect("~/");
 
                 }
@@ -83,6 +86,7 @@ namespace LaptopMart.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(user.email, user.password, true, false);
+          
 
                 if (result.Succeeded)
                 {
