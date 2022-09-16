@@ -102,3 +102,10 @@ D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Order\Checkout.cshtml.g.cs
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Order\OrderSuccess.cshtml.g.cs
 D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Order\OrderDetails.cshtml.g.cs
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\AutoMapper.dll
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+D:\6-Programming and courses\My Local Projects Repository\ASP.net MVC\LaptopMart\LaptopMart\obj\Debug\net5.0\Razor\Views\Item\Shop.cshtml.g.cs

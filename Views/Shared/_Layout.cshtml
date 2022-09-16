@@ -55,9 +55,9 @@
     <!--footer partial view-->
     <partial name="_Footer" />
 
-  
 
-  
+
+
     <!-- theme setting -->
     <a href="javascript:void(0)" onclick="openSetting()">
         <div class="setting-sidebar" id="setting-icon">
@@ -949,7 +949,6 @@
         </div>
     </div>
     <!-- tap to top end -->
-    
     <!-- latest jquery-->
     <script src="~/Website/js/jquery-3.3.1.min.js"></script>
 
@@ -979,18 +978,25 @@
     <script src="~/Website/js/bootstrap-notify.min.js"></script>
 
     <!-- Fly cart js-->
-    <script src="~/Website/js/fly-cart.js"></script>
-
-    
+    @*<script src="~/Website/js/fly-cart.js"></script>*@
 
 
-    <!--zoom-->
+
+
+    <!--render section scripts-->
     @RenderSection("scripts", required: false);
     @RenderSection("jqueryValidation", required: false);
     @RenderSection("zoomScript", required: false);
 
     <!-- Theme js-->
     <script src="~/Website/js/script.js"></script>
+
+    <!--ShoppingCart-->
+    <script src="~/Helpers/ShoppingCartHelper.js"></script>
+
+
+
+
 
     <script>
         $(window).on('load', function () {

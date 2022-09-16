@@ -17,6 +17,20 @@ namespace LaptopMart.BusinessServices
         }
 
 
+        public IEnumerable<VwItem> GetAllVwItems()
+        {
+            try
+            {
+                var items = _context.VwItems;
+                return items;
+
+            }
+            catch (Exception ex)
+            {
+                return new List<VwItem>();
+            }
+        }
+
         public IEnumerable<Item> GetAllItems()
         {
             try

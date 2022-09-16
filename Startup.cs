@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LaptopMart.Business_Services;
 using LaptopMart.BusinessServices;
+using LaptopMart.Helpers;
 using LaptopMart.Interfaces.IBusinessServices;
 using LaptopMart.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -77,7 +78,20 @@ namespace LaptopMart
 
             });
 
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder => { builder.AllowAnyOrigin(); builder.AllowAnyMethod();
+                    builder.AllowAnyHeader(); });
+
+            });
+
+            services.AddAutoMapper(typeof(ApplicationMapper));
+
+
+
         }
+
 
 
 
@@ -106,6 +120,8 @@ namespace LaptopMart
             app.UseAuthorization();
 
             app.UseSession();
+
+            app.UseCors("AllowAll");
           
             
             app.UseEndpoints(endpoints =>

@@ -26,5 +26,18 @@ namespace LaptopMart.Controllers
             };
            return View(itemDetailsVm);
         }
+
+        public IActionResult Shop()
+        {
+            return View();
+        }
+
+        public PartialViewResult GetProductBox2ByIdPartial(int id)
+        {
+            var item = _itemService.GetItemById(id);
+            return PartialView("_ProductBox2", item);
+        }
+
+
     }
 }

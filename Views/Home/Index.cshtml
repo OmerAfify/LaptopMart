@@ -1,5 +1,5 @@
 ﻿
-@model List<Item> 
+@model List<Item>
 <!-- Home slider -->
 <section class="p-0 layout-7">
     <div class="slide-1 home-slider">
@@ -137,20 +137,20 @@
         <div class="row game-product grid-products">
 
 
-            @foreach(var product in @Model) { 
-           
-            <div class="product-box col-xl-2 col-lg-3 col-sm-4 col-6">
-                <!--1 product-box -->
-                <partial name="_ProductBox" model="@product" />
-                <!--end of product-box-->
-            </div>
+            @foreach (var product in @Model)
+            {
+
+                <div class="product-box col-xl-2 col-lg-3 col-sm-4 col-6">
+                    <!--1 product-box -->
+                    <partial name="_ProductBox" model="@product" />
+                    <!--end of product-box-->
+                </div>
 
             }
         </div>
     </div>
 </section>
 <!-- Product section end -->
-
 <!-- Parallax banner -->
 <section class="p-0">
     <div class="full-banner parallax text-center p-right">
@@ -356,18 +356,18 @@
                                 {
                                     <div class="product-box">
                                         <partial name="_ProductBox" model="@product" />
-                                        </div>
-                                 }
-
                                     </div>
-                                </div>
+                                }
+
+                            </div>
+                        </div>
                         <div id="tab-5" class="tab-content">
                             <div class="product-4 game-product product-m no-arrow">
 
                                 @foreach (var product in Model.Take(3).ToList())
                                 {
                                     <div class="product-box">
-                                     <partial name="_ProductBox" model="@product" />
+                                        <partial name="_ProductBox" model="@product" />
                                     </div>
                                 }
                             </div>
@@ -380,6 +380,7 @@
             </div>
         </div>
     </div>
+    <button class="add-button">ADD</button>
 </section>
 <!-- product section end -->
 <!-- service layout -->

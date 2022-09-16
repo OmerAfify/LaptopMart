@@ -11,6 +11,8 @@ namespace LaptopMart.Interfaces.IBusinessServices
          
             public IEnumerable<Item> GetAllItems();
             public IEnumerable<VwItemCategory> GetAllItemsCategoriesView();
+
+             public IEnumerable<VwItem> GetAllVwItems();
             public VwItem GetItemView(int id);
 
             public IEnumerable<Item> GetRecomendedItems(int id);

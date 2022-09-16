@@ -1,7 +1,6 @@
 ﻿
 @model Item
-
- <!--1 product box-->
+<!--1 product box-->
 <div class="img-wrapper">
     <div class="front">
         <a href="product-page(no-sidebar).html">
@@ -23,18 +22,20 @@
                aria-hidden="true"></i>
         </a>
     </div>
-    <a class="add-button" asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@Model.itemId">
+    <button class="add-button add-To-Cart" data-id="@Model.itemId">
         add to
         cart
-    </a>
+    </button>
 </div>
 <div class="product-detail">
     <div class="rating">
         <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
     </div>
-    <a  asp-controller="Item"  asp-action="ItemDetails" asp-route-id="@Model.itemId">
+    <a asp-controller="Item" asp-action="ItemDetails" asp-route-id="@Model.itemId">
         <h6>@Model.itemName</h6>
     </a>
     <h4>$ @Model.salesPrice</h4>
 </div>
 <!--end of  product box-->
+
+
