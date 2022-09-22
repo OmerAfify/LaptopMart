@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hangfire;
 using LaptopMart.Business_Services;
 using LaptopMart.BusinessServices;
 using LaptopMart.Helpers;
@@ -16,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 
 namespace LaptopMart
 {
@@ -28,36 +30,39 @@ namespace LaptopMart
             Configuration = configuration;
         }
 
- 
-         public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
 
+            //Add Controllers with views + ignore self referencing loops 
+            services.AddControllersWithViews().AddNewtonsoftJson(opt => {
+                opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
+
+            //EF core 6 DbCOntext config
             services.AddDbContext<LapShopContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("LapShop_DB_ConnString")
                 ));
 
 
-            //session usage
+            //session config
             services.AddSession();
             services.AddHttpContextAccessor();
             services.AddDistributedMemoryCache();
 
-        
 
-
-            //identity config
+            //Identity 
             services.AddIdentity<MyApplicationUser, IdentityRole>(options =>
             {
                 options.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<LapShopContext>();
 
-            //DI registeraation
+
+
+            //DI registeration
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IItemService, ItemService>();
-            services.AddScoped<IOsService,OsService>();
+            services.AddScoped<IOsService, OsService>();
             services.AddScoped<IItemTypeService, ItemTypeService>();
-
 
             services.AddScoped<IOrderItemService, OrderItemService>();
             services.AddScoped<IOrderService, OrderService>();
@@ -65,7 +70,7 @@ namespace LaptopMart
             services.AddScoped<IPayementService, PayementService>();
 
 
-
+            // Cookie config
             services.ConfigureApplicationCookie(options => {
 
                 options.AccessDeniedPath = "/User/AccessDenied";
@@ -78,7 +83,11 @@ namespace LaptopMart
 
             });
 
+            //AutoMapper config
+            services.AddAutoMapper(typeof(ApplicationMapper));
 
+
+            // Adding Cors Policy
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll", builder => { builder.AllowAnyOrigin(); builder.AllowAnyMethod();
@@ -86,17 +95,21 @@ namespace LaptopMart
 
             });
 
-            services.AddAutoMapper(typeof(ApplicationMapper));
+  
 
+            //HangFire config
+            services.AddHangfire(x =>
+            {
+                x.UseSqlServerStorage(Configuration.GetConnectionString("LapShop_DB_ConnString"));
+                x.UseSerializerSettings(new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+            });
 
+            services.AddHangfireServer();
 
-        }
-
-
-
-
-
-
+            }
 
 
 
@@ -114,6 +127,8 @@ namespace LaptopMart
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+
+            app.UseHangfireDashboard();
             app.UseRouting();
 
             app.UseAuthentication();

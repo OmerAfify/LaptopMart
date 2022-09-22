@@ -426,6 +426,9 @@ namespace LaptopMart.Migrations
                     b.Property<DateTime>("orderDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("orderStatusId")
+                        .HasColumnType("int");
+
                     b.Property<int>("payementId")
                         .HasColumnType("int");
 
@@ -442,6 +445,8 @@ namespace LaptopMart.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("orderId");
+
+                    b.HasIndex("orderStatusId");
 
                     b.HasIndex("payementId");
 
@@ -471,6 +476,21 @@ namespace LaptopMart.Migrations
                     b.HasIndex("itemId");
 
                     b.ToTable("Tb_OrderItem");
+                });
+
+            modelBuilder.Entity("LaptopMart.Models.OrderStatus", b =>
+                {
+                    b.Property<int>("orderStatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("orderStatusName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("orderStatusId");
+
+                    b.ToTable("Tb_OrderStatus");
                 });
 
             modelBuilder.Entity("LaptopMart.Models.Payement", b =>
@@ -773,6 +793,15 @@ namespace LaptopMart.Migrations
 
                     b.Property<DateTime>("orderDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("orderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("orderStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("orderStatusName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("phoneNo")
                         .HasColumnType("int");
@@ -1128,6 +1157,12 @@ namespace LaptopMart.Migrations
 
             modelBuilder.Entity("LaptopMart.Models.Order", b =>
                 {
+                    b.HasOne("LaptopMart.Models.OrderStatus", "orderStatus")
+                        .WithMany("orders")
+                        .HasForeignKey("orderStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("LaptopMart.Models.Payement", "payement")
                         .WithMany()
                         .HasForeignKey("payementId")
@@ -1143,6 +1178,8 @@ namespace LaptopMart.Migrations
                     b.HasOne("LaptopMart.Models.MyApplicationUser", "user")
                         .WithMany()
                         .HasForeignKey("userId");
+
+                    b.Navigation("orderStatus");
 
                     b.Navigation("payement");
 
@@ -1345,6 +1382,11 @@ namespace LaptopMart.Migrations
             modelBuilder.Entity("LaptopMart.Models.Order", b =>
                 {
                     b.Navigation("orderItems");
+                });
+
+            modelBuilder.Entity("LaptopMart.Models.OrderStatus", b =>
+                {
+                    b.Navigation("orders");
                 });
 
             modelBuilder.Entity("LaptopMart.Models.PurchaseInvoice", b =>

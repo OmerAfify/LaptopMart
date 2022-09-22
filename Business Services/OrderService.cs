@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hangfire;
 using LaptopMart.Interfaces.IBusinessServices;
 using LaptopMart.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +29,7 @@ namespace LaptopMart.Business_Services
         }
 
         
-        public void SaveUsersOrder(Order order , List<OrderItem> orderItems, ShippingInfo shippingInfo )
+        public int SaveUsersOrder(Order order , List<OrderItem> orderItems, ShippingInfo shippingInfo )
         {
             
                 using (var transaction = _context.Database.BeginTransaction() )
@@ -48,10 +49,12 @@ namespace LaptopMart.Business_Services
 
                     transaction.Commit();
 
+                    return order.orderId;
                     }
                     catch(Exception ex)
                     {
                         transaction.Rollback();
+                    return 0;
                     }
 
                 }
@@ -68,6 +71,32 @@ namespace LaptopMart.Business_Services
 
                 return new List<VwOrderDetails>();
             }
+        }
+
+
+        public void UpdateOrderStatus(Order order) {
+
+
+            var jobId = BackgroundJob.Schedule(() => setToShipped(order), TimeSpan.FromMinutes(1) );
+            var jobId2 = BackgroundJob.Schedule(() => setToDelivered(order), TimeSpan.FromMinutes(2) );
+
+
+                    
+        }
+
+
+        public void setToShipped(Order order)
+        {
+            var TheNeworder = _context.Tb_Orders.Where(o => o.orderId == order.orderId).FirstOrDefault();
+            TheNeworder.orderStatusId = 2;
+            _context.SaveChanges();
+        } 
+        
+        public void setToDelivered(Order order)
+        {
+            var TheNeworder = _context.Tb_Orders.Where(o => o.orderId == order.orderId).FirstOrDefault();
+            TheNeworder.orderStatusId = 3;
+            _context.SaveChanges();
         }
 
 

@@ -30,6 +30,9 @@ function onQtyChange(input) {
                 UpdateShoppingCartQtyDOM(UpdateShoppingCartQty());
                 UpdateShoppingCartPriceDOM(UpdateShoppingCartPrice());
 
+                //update top shopping cart icon
+                GetShoppingCart()
+
             },
             error: function (xhr, ajaxoptions, thrownerror) {
                 alert(xhr.responsetext);
@@ -56,6 +59,9 @@ function removeFromCart(obj) {
             UpdateShoppingCartQtyDOM(UpdateShoppingCartQty());
             UpdateShoppingCartPriceDOM(UpdateShoppingCartPrice());
 
+            //update top shopping cart icon + top cart list 
+            GetShoppingCart()
+
         },
         error: function (xhr, ajaxoptions, thrownerror) {
             alert(xhr.responsetext);
@@ -75,6 +81,8 @@ $(document).ready(function () {
         url: '/shoppingcart/addtocart',
         data: {id: id },
         success: function (data) {
+
+
                 $.notify({
                     icon: 'fa fa-check',
                     title: 'Success!',
@@ -109,14 +117,116 @@ $(document).ready(function () {
                         '<a href="{3}" target="{4}" data-notify="url"></a>' +
                         '</div>'
                 });
-           
+
+              //get shopping cart + get top shopping cart icon + top cart list 
+            GetShoppingCart();
+
+
+
                   },
         error:function (xhr, ajaxoptions, thrownerror){
                         alert(xhr.responsetext);
                   }
          });
     });
+
+
+
 });
+
+
+
+function RemoveFromTopCart(obj) {
+
+    var itemId = $(obj).data("id");
+
+    $.ajax({
+        url: '/shoppingcart/RemoveFromCart',
+        data: { id: itemId },
+        success: function (data) {
+
+            //obj.closest("tr").remove();
+
+            //changing Total price + in the DOM too
+            UpdateShoppingCartQtyDOM(UpdateShoppingCartQty());
+            UpdateShoppingCartPriceDOM(UpdateShoppingCartPrice());
+
+            ////update top shopping cart icon + top cart list 
+            GetShoppingCart()
+
+        },
+        error: function (xhr, ajaxoptions, thrownerror) {
+            alert(xhr.responsetext);
+        }
+    });
+
+}
+
+
+
+function GetShoppingCart() {
+
+    $.ajax({
+        url: '/shoppingcart/GetShoppingCart',
+        success: function (data) {
+
+            if (data != null) {
+
+                //update top cart icon number
+                $(".TopShoppingCart").html(data.totalShoppingCartQty)
+
+
+                //update top cart list
+                $(".TopCartItemsList").html("");
+                for (let item of data.cartItemsList) {
+
+                    let itemBox = `<li> <div class="media">
+                                                        <a href="#">
+                                                            <img alt="" class="mr-3"
+                                                                 src="/Website/images/fashion/product/1.jpg">
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <a href="#">
+                                                                <h4> $${item.itemName}</h4>
+                                                            </a>
+                                                            <h6>
+                                                                Price : <span> ${item.itemPrice}</span>
+                                                            <br/>
+                                                                Qty: <span>${item.totalQty}x</span>
+                                                            <br/>
+                                                                Total Price: <span> $${item.totalPrice}</span>
+                                                           </h6>
+                                                        </div>
+                                                    </div>
+                                                    <div class="close-circle">
+                                                        <a data-id="${item.itemId}" onclick='RemoveFromTopCart(this)' >
+                                                            <i class="fa fa-times"
+                                                               aria-hidden="true"></i>
+                                                        </a>
+                                                    </div>
+                                                </li>`;
+
+                    $(".TopCartItemsList").append(itemBox);
+
+                }
+
+
+                // update top cart list totalQty and totalPrice
+                $("#TopCartItemsQty").html(data.totalShoppingCartQty);
+                $("#TopCartItemsPrice").html(data.totalShoppingCartPrice);
+
+            }
+
+        },
+        error: function (data) { }
+    });
+
+
+}
+
+
+
+
 
 
 
@@ -155,5 +265,7 @@ function UpdateShoppingCartQtyDOM(shoppingCartQty) {
     $("#totalShoppingCartQty").html(shoppingCartQty);
 
 }
+
+
 
 

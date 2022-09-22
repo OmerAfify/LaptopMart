@@ -42,12 +42,12 @@
      ==========================*/
     $(window).on('load', function() {
         setTimeout(function() {
-            $('.loader_skeleton').fadeOut('slow');
+            $('.loader_skeleton').fadeOut('fast');
             $('body').css({
                 'overflow': 'auto'
             });
-        }, 500);
-        $('.loader_skeleton').remove('slow');
+        }, 0);
+        $('.loader_skeleton').remove('fast');
         $('body').css({
             'overflow': 'hidden'
         });

@@ -9,8 +9,8 @@ namespace LaptopMart.Interfaces.IBusinessServices
     public interface IOrderService
     {
         public void AddOrder(Order order);
-        public void SaveUsersOrder(Order order, List<OrderItem> orderItems, ShippingInfo shippingInfo);
-
+        public int SaveUsersOrder(Order order, List<OrderItem> orderItems, ShippingInfo shippingInfo);
+        public void UpdateOrderStatus(Order order);
         public List<VwOrderDetails> GetAllCustomersVwOrders(string Email);
 
 

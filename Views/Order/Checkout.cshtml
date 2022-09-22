@@ -108,32 +108,24 @@
                                 <div class="payment-box">
                                     <div class="upper-box">
                                         <div class="payment-options">
-                                            <input type="number" asp-for="@Model.payementId" />
-                                            @*<ul>
-                                                <li>
-                                                    <div class="radio-option">
-                                                        <input type="radio" name="payment-group" id="payment-2">
-                                                        <label for="payment-2">
-                                                            Cash On Delivery<span class="small-text">
-                                                                Please send a check to Store
-                                                                Name, Store Street, Store Town, Store State /
-                                                                County, Store Postcode.
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </li>
+
+                                    
+                                            <select  asp-for="@Model.payementId" asp-items="@(new SelectList(Model.payementTypes, nameof (Payement.payementId), nameof(Payement.payementType) ))"></select>
+                                            
+                                            <ul>
+                                              
                                                 <li>
                                                     <div class="radio-option paypal">
-                                                        <input type="radio" name="payment-group" id="payment-3">
-                                                        <label for="payment-3">
-                                                            PayPal<span class="image">
+                                                          <label for="payment-3">
+                                                            <span class="image">
                                                                 <img src="~/Website/images/paypal.png"
                                                                      alt="">
                                                             </span>
                                                         </label>
                                                     </div>
                                                 </li>
-                                            </ul>*@
+                                            </ul>
+
                                         </div>
                                     </div>
                                     <div class="text-right"><button type="submit" class="btn-solid btn">Place Order</button></div>

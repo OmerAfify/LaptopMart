@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Hangfire;
 using LaptopMart.Interfaces.IBusinessServices;
 using LaptopMart.Models;
 using LaptopMart.ViewModels;
@@ -18,10 +19,12 @@ namespace LaptopMart.Controllers
     {
         private IOrderService _orderService;
         private IOrderItemService _orderItemService;
-        public OrderController(IOrderService orderService, IOrderItemService orderItemService )
+        private IPayementService _payementService;
+        public OrderController(IOrderService orderService, IOrderItemService orderItemService, IPayementService payementService )
         {
             _orderService = orderService;
             _orderItemService = orderItemService;
+            _payementService = payementService;
         }
 
 
@@ -68,13 +71,14 @@ namespace LaptopMart.Controllers
 
 
             var checkoutVm = new CheckoutPageViewModel() {
+
+                payementTypes = _payementService.GetAllPayments().ToList(),
                 shoppingCart = shoppingCart,
                 shippingInfo = new ShippingInfo() { userId= User.FindFirstValue(ClaimTypes.NameIdentifier) }
         };
 
             return View(checkoutVm);
         }
-
 
 
         [HttpPost]
@@ -91,16 +95,17 @@ namespace LaptopMart.Controllers
             if (ModelState.IsValid) {
 
             try {
-          
-                Order order = new Order()
-                {
-                    userId = User.FindFirstValue(ClaimTypes.NameIdentifier),
-                    orderDate = DateTime.Now,
-                    DeliveryDate = DateTime.Now.AddDays(5),
-                    payementId = 1,
-                    shippingInfoId = checkoutPageViewModel.shippingInfo.shippingInfoId,
-                    totalOrderQty = shoppingCart.totalShoppingCartQty,
-                    totalOrderPrice = shoppingCart.totalShoppingCartPrice
+
+                    Order order = new Order()
+                    {
+                        userId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                        orderDate = DateTime.Now,
+                        orderStatusId = 1,
+                        DeliveryDate = DateTime.Now.AddDays(5),
+                        payementId = checkoutPageViewModel.payementId,
+                        shippingInfoId = checkoutPageViewModel.shippingInfo.shippingInfoId,
+                        totalOrderQty = shoppingCart.totalShoppingCartQty,
+                        totalOrderPrice = shoppingCart.totalShoppingCartPrice
 
                 };
 
@@ -122,8 +127,12 @@ namespace LaptopMart.Controllers
             
                     }
 
-                    _orderService.SaveUsersOrder(order, orderItemsList, checkoutPageViewModel.shippingInfo);
-                    return RedirectToAction("OrderSuccess");
+                   _orderService.SaveUsersOrder(order, orderItemsList, checkoutPageViewModel.shippingInfo);
+
+                    _orderService.UpdateOrderStatus(order);
+                    HttpContext.Session.Remove(User.FindFirstValue(ClaimTypes.Email));
+
+                    return RedirectToAction("OrderSuccess", new { orderId=order.orderId} );
                }         
                 catch(Exception ex)
                 {
@@ -138,8 +147,9 @@ namespace LaptopMart.Controllers
             }
         }
 
-        public IActionResult OrderSuccess()
+        public IActionResult OrderSuccess(int orderId)
         {
+            ViewBag.orderId = orderId;
             return View();
         }
         

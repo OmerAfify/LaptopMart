@@ -29,7 +29,7 @@ namespace LaptopMart.Controllers
 
 
 
-        public IActionResult Cart()
+        public ShoppingCart GetShoppingCart()
         {
             var shoppingCart = new ShoppingCart() { cartItemsList = new List<CartItem>() };
 
@@ -39,15 +39,34 @@ namespace LaptopMart.Controllers
             {
                 state = HttpContext.Request.Cookies["shoppingCart"];
             }
-            else { 
+            else
+            {
                 state = HttpContext.Session.GetString(User.FindFirstValue(ClaimTypes.Email));
             }
 
-          
-            if (state != null)
+
+            if (state != null) { 
                 shoppingCart = JsonConvert.DeserializeObject<ShoppingCart>(state);
+                return shoppingCart;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+
+        public IActionResult Cart()
+        {
+            var cart = GetShoppingCart();
+
+            if (cart == null)
+            {
+                return View(new ShoppingCart() { cartItemsList = new List<CartItem>() });
+            }
            
-            return View(shoppingCart);
+            return View(cart);
         }
 
 

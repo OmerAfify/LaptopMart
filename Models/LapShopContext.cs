@@ -47,6 +47,7 @@ namespace LaptopMart.Models
         public virtual DbSet<OrderItem> Tb_OrderItem { get; set; }
         public virtual DbSet<Payement> Tb_Payement { get; set; }
         public virtual DbSet<ShippingInfo> Tb_ShippingInfo { get; set; }
+        public virtual DbSet<OrderStatus> Tb_OrderStatus { get; set; }
 
         //View
         public virtual DbSet<VwOrderDetails> VwOrderDetails { get; set; }
@@ -423,6 +424,9 @@ namespace LaptopMart.Models
             modelBuilder.Entity<Order>(entity =>
             {
                 entity.HasKey(k => k.orderId);
+
+                entity.HasOne(s => s.orderStatus).
+                WithMany(s => s.orders).HasForeignKey(s => s.orderStatusId).OnDelete(DeleteBehavior.Cascade);
 
 
             });

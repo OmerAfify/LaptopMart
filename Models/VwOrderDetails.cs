@@ -21,6 +21,7 @@ namespace LaptopMart.Models
         public int totalOrderQty{ get; set; }
         public decimal totalOrderPrice{ get; set; }
         public string PayementType{ get; set; }
-
+        public int orderStatusId { get; set; }
+        public string orderStatusName { get; set; }
     }
 }
