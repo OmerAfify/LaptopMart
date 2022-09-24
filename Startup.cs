@@ -1,14 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Hangfire;
 using LaptopMart.Business_Services;
 using LaptopMart.BusinessServices;
 using LaptopMart.Helpers;
 using LaptopMart.Interfaces.IBusinessServices;
+
 using LaptopMart.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -17,6 +21,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 
 namespace LaptopMart
@@ -33,6 +38,7 @@ namespace LaptopMart
         public void ConfigureServices(IServiceCollection services)
         {
 
+
             //Add Controllers with views + ignore self referencing loops 
             services.AddControllersWithViews().AddNewtonsoftJson(opt => {
                 opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
@@ -42,6 +48,8 @@ namespace LaptopMart
             services.AddDbContext<LapShopContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("LapShop_DB_ConnString")
                 ));
+
+      
 
 
             //session config
@@ -57,6 +65,33 @@ namespace LaptopMart
             }).AddEntityFrameworkStores<LapShopContext>();
 
 
+            //Auth Service
+            services.AddAuthentication()
+            .AddCookie(options =>
+            {
+                options.LoginPath = "/User/AccessDenied";
+                options.AccessDeniedPath = "/User/AccessDenied";
+            })
+           .AddJwtBearer(options =>         // Adding Jwt Bearer config
+            {
+               options.SaveToken = true;
+               options.RequireHttpsMetadata = false;
+               options.TokenValidationParameters = new TokenValidationParameters()
+               {
+                   ValidateIssuer = true,
+                   ValidateAudience = true,
+                   ValidateIssuerSigningKey = true, 
+                   ValidateLifetime = true, 
+                   ValidIssuer = Configuration["JWT:ValidIssuer"],
+                   ValidAudience = Configuration["JWT:ValidAudience"],
+
+                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Key"]))
+               };
+           });
+
+
+        
+
 
             //DI registeration
             services.AddScoped<ICategoryService, CategoryService>();
@@ -68,6 +103,8 @@ namespace LaptopMart
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IShippingInfoService, ShippingInfoService>();
             services.AddScoped<IPayementService, PayementService>();
+
+            services.AddScoped<IUserService, UserService>();
 
 
             // Cookie config
@@ -95,7 +132,6 @@ namespace LaptopMart
 
             });
 
-  
 
             //HangFire config
             services.AddHangfire(x =>
@@ -110,8 +146,6 @@ namespace LaptopMart
             services.AddHangfireServer();
 
             }
-
-
 
          public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using LaptopMart.Interfaces.IBusinessServices;
 using LaptopMart.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -12,13 +13,18 @@ namespace LaptopMart.Controllers
 {
     public class UserController : Controller
     {
+        private IUserService _userService;
         private UserManager<MyApplicationUser> _userManager;
         private SignInManager<MyApplicationUser> _signInManager;
-        public UserController(UserManager<MyApplicationUser> userManager, SignInManager<MyApplicationUser> signInManager) {
+        public UserController(UserManager<MyApplicationUser> userManager,
+            SignInManager<MyApplicationUser> signInManager,
+            IUserService userService
+           ) {
 
             _userManager = userManager;
             _signInManager = signInManager;
-        
+          
+            _userService = userService;
         }
 
 
@@ -72,7 +78,7 @@ namespace LaptopMart.Controllers
         }
 
 
-
+    
 
         public IActionResult Login(string returnUrl)
         {

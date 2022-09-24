@@ -8,6 +8,13 @@ namespace LaptopMart.Models
 {
     public class MyApplicationUser : IdentityUser
     {
+
+        public MyApplicationUser()
+        {
+            shippingInfoList = new List<ShippingInfo>() { };
+
+        }
+
         public string firstName{ get; set; }
         public string lastName{ get; set; }
 

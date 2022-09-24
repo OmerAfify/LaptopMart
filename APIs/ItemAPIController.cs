@@ -6,6 +6,8 @@ using AutoMapper;
 using LaptopMart.DTOs;
 using LaptopMart.Interfaces.IBusinessServices;
 using LaptopMart.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -29,6 +31,8 @@ namespace LaptopMart.APIs
 
         // GET: api/<ItemAPIController>
         [HttpGet]
+        [Authorize(AuthenticationSchemes =JwtBearerDefaults.AuthenticationScheme)]
+        [Route("/api/Items")]
         public IActionResult Get()
         {
             try {
