@@ -24,7 +24,6 @@ namespace LaptopMart.Controllers
             _userManager = userManager;
             _itemService = itemService;
 
-
         }
 
 

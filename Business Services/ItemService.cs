@@ -99,6 +99,18 @@ namespace LaptopMart.BusinessServices
             }
         }
 
+        public IEnumerable<VwItem> GetItemByCategoryId(int catId)
+        {
+            try {
+
+                var items = _context.VwItems.Where(c => c.categoryId == catId);
+                return items;
+
+
+            } catch (Exception ex) { return new List<VwItem>() { }; }
+
+
+        }
         
         //logic is getting products with range ' price-50 < price < price + 50 ' as well as of the same category.
         public IEnumerable<Item> GetRecomendedItems(int id)

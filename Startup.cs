@@ -103,6 +103,7 @@ namespace LaptopMart
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IShippingInfoService, ShippingInfoService>();
             services.AddScoped<IPayementService, PayementService>();
+            services.AddScoped<ISlidersService, SlidersService>();
 
             services.AddScoped<IUserService, UserService>();
 

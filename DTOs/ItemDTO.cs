@@ -9,6 +9,8 @@ namespace LaptopMart.DTOs
     {
         public int itemId { get; set; }
         public string itemName { get; set; }
+        public int categoryId{ get; set; }
+        public string categoryName { get; set; }
         public decimal purchasePrice { get; set; }
         public decimal salesPrice { get; set; }
         public string imageName { get; set; }
@@ -20,7 +22,6 @@ namespace LaptopMart.DTOs
         public string screenReslution { get; set; }
         public string screenSize { get; set; }
         public string weight { get; set; }
-        public string categoryName { get; set; }
         public string itemTypeName { get; set; }
         public string osName { get; set; }
     }

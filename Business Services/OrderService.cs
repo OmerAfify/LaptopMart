@@ -75,26 +75,36 @@ namespace LaptopMart.Business_Services
 
 
         public void UpdateOrderStatus(Order order) {
+            if (order == null)
+                return;
 
 
             var jobId = BackgroundJob.Schedule(() => setToShipped(order), TimeSpan.FromMinutes(1) );
             var jobId2 = BackgroundJob.Schedule(() => setToDelivered(order), TimeSpan.FromMinutes(2) );
-
-
                     
         }
 
 
         public void setToShipped(Order order)
         {
+         
             var TheNeworder = _context.Tb_Orders.Where(o => o.orderId == order.orderId).FirstOrDefault();
+
+            if (TheNeworder == null)
+                return;
+            
             TheNeworder.orderStatusId = 2;
             _context.SaveChanges();
         } 
         
         public void setToDelivered(Order order)
         {
+           
             var TheNeworder = _context.Tb_Orders.Where(o => o.orderId == order.orderId).FirstOrDefault();
+
+            if (TheNeworder == null)
+                return;
+
             TheNeworder.orderStatusId = 3;
             _context.SaveChanges();
         }

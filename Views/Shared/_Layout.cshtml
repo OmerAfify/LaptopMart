@@ -9,9 +9,9 @@
     <meta name="description" content="multikart">
     <meta name="keywords" content="multikart">
     <meta name="author" content="multikart">
-    <link rel="icon" href="~/Website/images/favicon/1.png" type="image/x-icon">
-    <link rel="shortcut icon" href="~/Website/images/favicon/1.png" type="image/x-icon">
-    <title>Multikart - Multi-purpopse E-commerce Html Template</title>
+    <link rel="icon" href="~/Website/images/favicon/9.png" type="image/x-icon">
+    <link rel="shortcut icon" href="~/Website/images/favicon/9.png" type="image/x-icon">
+    <title>Laptop Mart</title>
 
     <!--Google font-->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
@@ -988,8 +988,12 @@
     @RenderSection("jqueryValidation", required: false)
     @RenderSection("zoomScript", required: false)
 
+
+
     <!-- Theme js-->
     <script src="~/Website/js/script.js"></script>
+
+    @RenderSection("shopScripts", required: false)
 
     <!--ShoppingCart-->
     <script src="~/Helpers/ShoppingCartHelper.js"></script>
@@ -997,18 +1001,18 @@
 
 
     <!--Top Header shopping Cart -->
-        <script>
-            $(document).ready(function () {
+    <script>
+        $(document).ready(function () {
 
-                GetShoppingCart();
+            GetShoppingCart();
 
-            })
-        </script>
+        })
+    </script>
 
-    
+
 
     <script>
- 
+
         function openSearch() {
             document.getElementById("search-overlay").style.display = "block";
         }

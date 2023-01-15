@@ -73,7 +73,13 @@ function removeFromCart(obj) {
 
 
 $(document).ready(function () {
-    $(".add-To-Cart").on('click',function () {
+
+    console.log($(".add-To-Cart").length)
+
+    $(".add-To-Cart").on('click', function () {
+
+        console.log("written or clicked")
+       
 
     let id = $(this).data("id");
 
@@ -81,7 +87,7 @@ $(document).ready(function () {
         url: '/shoppingcart/addtocart',
         data: {id: id },
         success: function (data) {
-
+         
 
                 $.notify({
                     icon: 'fa fa-check',

@@ -15,15 +15,19 @@ namespace LaptopMart.Controllers
     {
 
         private IItemService _itemService;
-        public HomeController(IItemService itemService)
+        private ISlidersService _slidersService;
+        public HomeController(IItemService itemService, ISlidersService slidersService)
         {
             _itemService = itemService;
+            _slidersService = slidersService;
+
         }
 
         public IActionResult Index()
         {
             var items = _itemService.GetAllItems().Take(12).ToList();
             ViewBag.user = User.FindFirstValue(ClaimTypes.Email);
+            ViewBag.sliders = _slidersService.GetAllSliders();
             return View(items);
         }
 

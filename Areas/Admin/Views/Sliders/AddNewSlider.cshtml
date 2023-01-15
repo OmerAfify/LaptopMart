@@ -1,0 +1,155 @@
+﻿
+@model slider
+
+<div class="container-fluid page-body-wrapper">
+
+    <div class="main-panel">
+        <div class="content-wrapper">
+
+            <h3 class="page-title">
+                @(Model.sliderId == 0 ? "Add a New Slider" : "Update Slider")
+            </h3>
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Items</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        @(Model.sliderId == 0 ? "Add a New Slider" : "Update Slider")
+                    </li>
+                </ol>
+            </nav>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-12 grid-margin">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">
+
+                            @(Model.sliderId == 0 ? "Add a New Slider" : $"Update Slider No : '{Model.sliderId}' Data")
+
+                        </h4>
+
+                        <!--start of form-->
+                        <form method="post" role="form" enctype="multipart/form-data" class="form-sample" asp-controller="Sliders" asp-action="Save">
+                            <p class="card-description"> Please enter the new sliders's details.</p>
+
+                            <br />
+
+
+                            <p class="card-description">General Info</p>
+                            <hr />
+                            <div class="form-group">
+
+                                <!--Title and Description-->
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Title Name</label>
+                                            <div class="col-sm-9">
+                                                <input asp-for="title" type="text" class="form-control" />
+                                                <span asp-validation-for="title" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Description</label>
+                                            <div class="col-sm-9">
+                                                <input asp-for="description" type="text" class="form-control" />
+                                                <span asp-validation-for="description" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Img -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Image</label>
+                                            <!--IMG-->
+
+                                            <div class="col-sm-9">
+
+                                                <div id="tbImgSrc">
+                                                    <img src="~/Uploads/Images/SlidersImages/@Model.imageName" style="width:50%; height:50%" />
+                                                </div>
+                                                <span id="tbImgName">@Model.imageName</span>
+
+                                            </div>
+
+
+                                            <!--IMG-->
+                                            <div class="col-sm-9">
+                                                <input type="file" name="Files" class="form-control" onchange="Upload.UploadDefaultImg(event)" />
+                                                <input type="hidden" asp-for="imageName" />
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <!--Hidden ID-->
+                            <input type="hidden" asp-for="sliderId" />
+
+                            <div class="row">
+
+                                <button type="submit" class="col-md-2 offset-md-3 btn btn-success btn-lg">Save</button>
+
+                                <button type="reset" class="col-md-2 offset-md-1 btn btn-primary btn-lg">Reset</button>
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section scripts {
+    <!-- Custom js for this page -->
+    <script src="~/Admin/js/file-upload.js"></script>
+    <script type="text/javascript" src="~/Helpers/Helper.js"></script>
+
+
+    <script>
+
+                function isFormValid(id) {
+                    form = document.getElementById(id);
+
+                    if (form.isValid)
+                        return true;
+                    else
+                        return false;
+
+                }
+    </script>
+
+    <!-- End custom js for this page -->
+}
+
+
+
+@section jqueryValidation{
+    <!--j-query validation-->
+    <script src="~/Admin/vendors/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/Admin/vendors/jquery.validate.unobtrusive.min.js_3.2.11/cdnjs/jquery.validate.unobtrusive.min.js"></script>
+    <!--j-query validation-->
+}

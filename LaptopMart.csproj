@@ -8,7 +8,7 @@
     <Folder Include="wwwroot\Admin\" />
     <Folder Include="wwwroot\Uploads\Images\CategoryImages\" />
     <Folder Include="wwwroot\Uploads\Images\ItemImages\" />
-    <Folder Include="wwwroot\Website\" />
+    <Folder Include="wwwroot\Uploads\Images\SlidersImages\" />
   </ItemGroup>
 
   <ItemGroup>

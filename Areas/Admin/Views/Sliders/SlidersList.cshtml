@@ -1,0 +1,73 @@
+﻿
+@model List<slider>
+
+
+<div class="content-wrapper">
+
+    <div class="page-header">
+        <h3 class="page-title"> Sliders List </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Tables</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Sliders List</li>
+            </ol>
+        </nav>
+    </div>
+
+
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Items List</h4>
+            <div class="row">
+                <div class="col-12">
+                    <a asp-controller="Sliders" asp-action="AddNewSlider" class="btn btn-success">Add a New Slider</a>
+                    <table id="order-listing" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Image</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                             
+                                <th></th> <!--Edit-->
+                                <th></th> <!--Delete-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var slider in @Model)
+                            {
+                                <tr>
+                                    <td>@slider.sliderId</td>
+                                    <td><img style="width:50px; height:50px;" src="@string.Format("/Uploads/Images/SlidersImages/{0}",slider.imageName)" /></td>
+
+                                    <td> @slider.title</td>
+
+                                    <td>@slider.description</td>
+                                
+                                    <td> <a asp-controller="Sliders" asp-action="UpdateSlider" asp-route-id="@slider.sliderId" class="btn btn-primary">Edit</a></td>
+                                    <td> <a asp-controller="Sliders" asp-action="DeleteSlider" asp-route-id="@slider.sliderId" class="btn btn-danger">Delete</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section scripts {
+
+    <script src="~/admin/js/data-table.js"></script>
+}
+
+@section dataTableScripts {
+    <script src="~/Admin/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="~/Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+}
+

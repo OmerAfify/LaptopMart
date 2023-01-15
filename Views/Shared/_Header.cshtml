@@ -11,7 +11,7 @@
                     <div class="col-lg-6">
                         <div class="header-contact">
                             <ul>
-                                <li>Welcome to Our store Multikart</li>
+                                <li>Welcome to Laptop Mart</li>
                                 <li><i class="fa fa-phone" aria-hidden="true"></i>Call Us: 123 - 456 - 7890</li>
                             </ul>
                         </div>
@@ -65,17 +65,21 @@
                                             <a asp-controller="Home" asp-action="Index">Home</a>
                                         </li>
                                         <li>
-                                            <a asp-controller="Home" asp-action="Index">shop</a>
+                                            <a asp-controller="Items" asp-action="Shop">Shop</a>
                                         </li>
+
 
                                         @if (!signInManager.IsSignedIn(User))
                                         {
+                                            <li>
+                                                <a asp-controller="Order" asp-action="Checkout">Checkout</a>
+                                            </li>
                                             <li>
                                                 <a asp-controller="Order" asp-action="OrderDetails">orders</a>
                                             </li>
                                         }
 
-                                   
+
                                     </ul>
                                 </nav>
                             </div>
@@ -284,7 +288,7 @@
                 <div class="col-lg-6">
                     <div class="header-contact">
                         <ul>
-                            <li>Welcome to Our store Multikart</li>
+                            <li>Welcome to Laptop Mart</li>
                             <li><i class="fa fa-phone" aria-hidden="true"></i>Call Us: 123 - 456 - 7890</li>
                         </ul>
                     </div>
@@ -521,11 +525,14 @@
                                     @if (signInManager.IsSignedIn(User))
                                     {
                                         <li>
+                                            <a asp-controller="Order" asp-action="Checkout">Checkout</a>
+                                        </li>
+                                        <li>
                                             <a asp-controller="Order" asp-action="OrderDetails">orders</a>
                                         </li>
                                     }
 
-                                    
+
                                 </ul>
                             </nav>
                         </div>
@@ -572,13 +579,9 @@
                                             <h6>language</h6>
                                             <ul>
                                                 <li><a href="#">english</a></li>
-                                                <li><a href="#">french</a></li>
                                             </ul>
                                             <h6>currency</h6>
                                             <ul class="list-inline">
-                                                <li><a href="#">euro</a></li>
-                                                <li><a href="#">rupees</a></li>
-                                                <li><a href="#">pound</a></li>
                                                 <li><a href="#">doller</a></li>
                                             </ul>
                                         </div>
