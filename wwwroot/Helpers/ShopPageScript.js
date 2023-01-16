@@ -83,7 +83,7 @@
             dataType: "json",
             success: function (response) {
 
-                for (let item of response.slice(0, 50)) {
+                for (let item of response) {
 
                     var box = DrawItem(item);
                     productsList.append(box);
@@ -136,12 +136,22 @@
             dataType: "json",
             success: function (response) {
 
+
+                let allBox = ` <div class="custom-control custom-checkbox collection-filter-checkbox">
+
+                                       <button class="btn btnCatFilter btn-all" onclick="ShopPageFilter.filterSelection('all')">all</button>
+
+                                      </div>
+                                       `
+                categoryFilters.append(allBox);
+
                 for (let brand of response) {
 
                     let brandBox = ` <div class="custom-control custom-checkbox collection-filter-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="${brand.categoryName}" data-id=${brand.categoryId}>
-                                                <label class="custom-control-label" for="${brand.categoryName}">${brand.categoryName}</label>
-                                         </div>
+
+                                       <button class="btn btnCatFilter btn-cat-${brand.categoryId}" onclick="ShopPageFilter.filterSelection('cat-${brand.categoryId}')">${brand.categoryName}</button>
+
+                                      </div>
                                        `
                     categoryFilters.append(brandBox);
 
@@ -161,10 +171,8 @@
 
     function DrawItem(item) {
 
-        let box = `<div class="col-xl-3 col-6 col-grid-box" data-catId='${item.categoryId}'>
+        let box = `<div class="col-xl-3 col-6 col-grid-box filterDiv cat-${item.categoryId} show" data-catId='${item.categoryId}' >
         <div class="product-box">
-
-
 
             <div class="img-wrapper">
                 <div class="front">

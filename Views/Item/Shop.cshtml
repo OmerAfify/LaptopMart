@@ -6,14 +6,14 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="page-title">
-                        <h2>collection</h2>
+                        <h2>Shop</h2>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <nav aria-label="breadcrumb" class="theme-breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">collection</li>
+                            <li class="breadcrumb-item active" aria-current="page">Shop</li>
                         </ol>
                     </nav>
                 </div>
@@ -53,59 +53,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- color filter start here -->
-                            <div class="collection-collapse-block open">
-                                <h3 class="collapse-block-title">colors</h3>
-                                <div class="collection-collapse-block-content">
-                                    <div class="color-selector">
-                                        <ul>
-                                            <li class="color-1 active"></li>
-                                            <li class="color-2"></li>
-                                            <li class="color-3"></li>
-                                            <li class="color-4"></li>
-                                            <li class="color-5"></li>
-                                            <li class="color-6"></li>
-                                            <li class="color-7"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- size filter start here -->
-                            <div class="collection-collapse-block border-0 open">
-                                <h3 class="collapse-block-title">size</h3>
-                                <div class="collection-collapse-block-content">
-                                    <div class="collection-brand-filter">
-                                        <div class="custom-control custom-checkbox collection-filter-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="hundred">
-                                            <label class="custom-control-label" for="hundred">s</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox collection-filter-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="twohundred">
-                                            <label class="custom-control-label" for="twohundred">m</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox collection-filter-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="threehundred">
-                                            <label class="custom-control-label" for="threehundred">l</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox collection-filter-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="fourhundred">
-                                            <label class="custom-control-label" for="fourhundred">xl</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- price filter start here -->
-                            <div class="collection-collapse-block border-0 open">
-                                <h3 class="collapse-block-title">price</h3>
-                                <div class="collection-collapse-block-content">
-                                    <div class="wrapper mt-3">
-                                        <div class="range-slider">
-                                            <input type="text" class="js-range-slider" value="" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                           </div>
     <!-- silde-bar colleps block end here -->
 
 
@@ -172,7 +120,7 @@
                                             </div>
                                         </div>
                                         <div class="product-wrapper-grid">
-                                            <div class="products-data row margin-res">
+                                            <div class="products-data row margin-res" style="overflow: hidden;">
                                                 <!--products are drawn here throgh ajax calls -->
                                              
                                          
@@ -228,5 +176,9 @@
 
 @section shopScripts{ 
 
-    <script src="~/Helpers/ShopPageScript.js"></script>
+<script src="~/Helpers/ShopPageScript.js"></script>
+
+<script src="~/Helpers/ShopPageFilteringScript.js"></script>
+
+
 }
