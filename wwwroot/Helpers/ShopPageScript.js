@@ -1,78 +1,71 @@
 ﻿
-    var productsList = $(".products-data");
-    var categoryFilters = $(".catNamesFilter");
-
+var productsList = $(".products-data");
+var categoryFilters = $(".catNamesFilter");
 
 
     $(document).ready(function () {
 
     GetAllItems();
-    GetAllCategories();
+        GetAllCategories();
 
 
-    function FilterCategories(catId) {
 
-        $("input.custom-control-input").each(function () {
+    function GetItemsByCategory(catId) {
 
-            $(this).click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/api/GetItemsByCatId/"+catId,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
 
-                let id = $(this).data("id");
+                    $('#pagination-shopPage').pagination({
+                        dataSource: response,
+                        pageSize: 8,
+                        showGoInput: true,
+                        showGoButton: true,
+                        showPrevious: false,
+                        showNext: false,
+                        autoHidePrevious: true,
+                        autoHideNext: true,
 
-                if (this.checked == false) {
+                        callback: function (data, pagination) {
+                            productsList.html("");
+                            var html = "";
+                            for (let item of data) {
 
-                    document.querySelectorAll(`[data-catId='${id}']`)
+                                var box = DrawItem(item);
+                                html += box;
 
 
-                    console.log(document.querySelectorAll(`[data-catId='${id}']`))
-                }
-                else {
-
-                    let id = $(this).data("id");
-
-                    $.ajax({
-                        type: "GET",
-                        url: "/api/GetItemsByCatId",
-                        data: { catId: id },
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function (response) {
-
-                            for (let item of response) {
-
-                                $.ajax({
-                                    url: '/Item/GetProductBox2ByIdPartial',
-                                    data: { id: item.itemId },
-                                    success: function (data) {
-
-                                        let box = `<div class="col-xl-3 col-6 col-grid-box" data-catId='${item.categoryId}'>
-                                           <div class="product-box">
-                                               ${data}
-                                          </div></div>`
-                                        productsList.append(box);
-                                    },
-                                    error: function (data) {
-                                        alert('Failed to retrieve data.');
-                                    }
-
-                                });
                             }
-                        },
-                        failure: function (response) {
-                            console.log(response.responseText);
-                        },
-                        error: function (response) {
-                            console.log(response.responseText);
+                            productsList.html(html);
+
                         }
+                    })
+
+
+
+
+
+                },
+                failure: function (response) {
+                    console.log(response.responseText);
+                },
+                error: function (response) {
+                    console.log(response.responseText);
+                },
+                complete: function () {
+                    $.getScript("/Helpers/ShoppingCartHelper.js", function () {
+
                     });
 
                 }
 
             });
-        });
 
 
             };
-
 
     function GetAllItems() {
 
@@ -83,31 +76,33 @@
             dataType: "json",
             success: function (response) {
 
-                for (let item of response) {
+                $('#pagination-shopPage').pagination({
+                    dataSource: response,
+                    pageSize: 8,
+                    showGoInput: true,
+                    showGoButton: true,
+                    showPrevious: false,
+                    showNext: false,
+                    autoHidePrevious: true,
+                    autoHideNext: true,
+                    
+                    callback: function (data, pagination) {
+                        productsList.html("");
+                        var html = "";
+                        for (let item of data) {
+                            
+                            var box = DrawItem(item);
+                            html += box;
+                           
 
-                    var box = DrawItem(item);
-                    productsList.append(box);
-
-                    //$.ajax({
-                    //    url: '/Item/GetProductBox2ByIdPartial',
-                    //    data: { id: item.itemId },
-                    //    success: function (data) {
-
-                    //        let box = `<div class="col-xl-3 col-6 col-grid-box" data-catId='${item.categoryId}'>
-                    //               <div class="product-box">
-                    //                   ${data}
-                    //              </div></div>`
-                    //        productsList.append(box);
-                    //    },
-                    //    error: function (data) {
-                    //        alert('Failed to retrieve data.');
-                    //    }
-
-                    //});
+                        }
+                        productsList.html(html);
+                        
+                    }
+                })
 
 
-                }
-
+               
 
 
             },
@@ -139,25 +134,51 @@
 
                 let allBox = ` <div class="custom-control custom-checkbox collection-filter-checkbox">
 
-                                       <button class="btn btnCatFilter btn-all" onclick="ShopPageFilter.filterSelection('all')">all</button>
+                                       <button class="btn btnCatFilter btn-all" >all</button>
 
                                       </div>
                                        `
                 categoryFilters.append(allBox);
 
+
+                var btn = document.querySelector(".btn-all");
+        
+                btn.addEventListener("click", function () {
+                    GetAllItems()
+                    SetButtonToActive("all");
+      
+                })
+
+
+
                 for (let brand of response) {
 
                     let brandBox = ` <div class="custom-control custom-checkbox collection-filter-checkbox">
 
-                                       <button class="btn btnCatFilter btn-cat-${brand.categoryId}" onclick="ShopPageFilter.filterSelection('cat-${brand.categoryId}')">${brand.categoryName}</button>
+                                       <button class="btn individual btnCatFilter btn-cat-${brand.categoryId}" data-catId='${brand.categoryId}'  )">${brand.categoryName}</button>
 
                                       </div>
                                        `
                     categoryFilters.append(brandBox);
+                    
+
 
                 }
 
-                FilterCategories(1);
+                var btns = document.querySelectorAll(".individual.btnCatFilter");
+
+
+                btns.forEach(btn => {
+
+                    btn.addEventListener('click', event => {
+
+                        GetItemsByCategory(btn.getAttribute("data-catId"))
+                        SetButtonToActive("cat-"+btn.getAttribute("data-catId"))
+
+                    });
+
+                })
+
 
             },
             failure: function (response) {
@@ -168,6 +189,7 @@
             }
         })
     }
+
 
     function DrawItem(item) {
 
@@ -218,6 +240,21 @@
 
             return box;
             }
+
+
+        function SetButtonToActive(activatedCategoryBtn) {
+
+
+            var current = document.getElementsByClassName("active");
+
+            if (current.length != 0)
+                current[0].className = current[0].className.replace(" active", "");
+
+            var activatedBtn = document.querySelector(`.btn-${activatedCategoryBtn}`);
+
+
+            activatedBtn.className += " active";
+        }
 
 
         })

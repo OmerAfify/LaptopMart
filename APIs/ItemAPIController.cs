@@ -46,8 +46,7 @@ namespace LaptopMart.APIs
 
 
         [HttpGet]
-        [Authorize]
-        [Route("/api/GetItemsByCatId")]
+        [Route("/api/GetItemsByCatId/{catId}")]
         public IActionResult GetItemsByCategoryId(int catId)
         {
             try
