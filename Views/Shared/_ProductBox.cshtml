@@ -1,11 +1,25 @@
 ﻿
 @model Item
 <!--1 product box-->
+
+
+
 <div class="img-wrapper">
     <div class="front">
+        
         <a href="product-page(no-sidebar).html">
-            <img src="~/Website/images/marketplace/2.jpg"
-                 class="img-fluid blur-up lazyload bg-img" alt="">
+
+           @{ if (!string.IsNullOrEmpty(@Model.imageName))
+            {
+            <img src=@string.Format("/Uploads/Images/ItemImages/{0}",@Model.imageName) class="img-fluid blur-up lazyload bg-img" alt="">
+
+            }
+            else
+            {
+                <img src="~/Website/images/marketplace/2.jpg" class="img-fluid blur-up lazyload bg-img" alt="">
+            }
+        }
+
         </a>
     </div>
     <div class="cart-info cart-wrap">
@@ -32,10 +46,10 @@
         <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
     </div>
     <a asp-controller="Item" asp-action="ItemDetails" asp-route-id="@Model.itemId">
-        <h6>@Model.itemName</h6>
+        <h6>@Model.itemName </h6>
     </a>
     <h4>$ @Model.salesPrice</h4>
-</div>
+   </div>
 <!--end of  product box-->
 
 

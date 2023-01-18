@@ -198,16 +198,16 @@ var categoryFilters = $(".catNamesFilter");
 
             <div class="img-wrapper">
                 <div class="front">
-                    <a href="#">
-                        <img src="/Website/images/pro3/33.jpg"
+                   
+                        <img src=${ (item.imageName == null || item.imageName == "") ? "/Website/images/pro3/33.jpg" : "/Uploads/Images/ItemImages/" + item.imageName }
                             class="img-fluid blur-up lazyload bg-img" alt="">
-            </a>
+           
         </div>
                     <div class="back">
-                        <a href="#">
-                            <img src="/Website/images/pro3/34.jpg"
-                                class="img-fluid blur-up lazyload bg-img" alt="">
-            </a>
+                       
+                              <img src=${ (item.imageName == null || item.imageName == "") ? "/Website/images/pro3/34.jpg" : "/Uploads/Images/ItemImages/" + item.imageName}
+                          class="img-fluid blur-up lazyload bg-img" alt="">
+          
         </div>
                         <div class="cart-info cart-wrap">
                             <button class="add-To-Cart" data-id='${item.itemId}' title="add to cart">
@@ -242,7 +242,7 @@ var categoryFilters = $(".catNamesFilter");
             }
 
 
-        function SetButtonToActive(activatedCategoryBtn) {
+    function SetButtonToActive(activatedCategoryBtn) {
 
 
             var current = document.getElementsByClassName("active");

@@ -465,6 +465,9 @@ namespace LaptopMart.Migrations
                     b.Property<int>("itemId")
                         .HasColumnType("int");
 
+                    b.Property<string>("itemImage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("totalPrice")
                         .HasColumnType("decimal(18,2)");
 

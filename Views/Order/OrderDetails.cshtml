@@ -59,8 +59,21 @@
                         {
                             <div class="row product-order-detail">
                                 <div class="col-3">
-                                    <img src="~/Website/images/pro3/1.jpg" alt=""
-                                         class="img-fluid blur-up lazyload">
+                                    @{ if (!string.IsNullOrEmpty(orderedItem.item.imageName))
+                                        {
+                                            <img src=@string.Format("/Uploads/Images/ItemImages/{0}",orderedItem.item.imageName) alt=""
+                                                 class="img-fluid blur-up lazyload">
+
+                                            
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Website/images/pro3/1.jpg" alt=""
+                                                 class="img-fluid blur-up lazyload">
+
+                                        }
+                                    }
+
                                 </div>
                                 <div class="col-3 order_detail">
                                     <div>

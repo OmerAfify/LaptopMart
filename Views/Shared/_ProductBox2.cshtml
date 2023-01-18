@@ -4,14 +4,32 @@
     <div class="img-wrapper">
         <div class="front">
             <a href="#">
-                <img src="~/Website/images/pro3/33.jpg"
-                     class="img-fluid blur-up lazyload bg-img" alt="">
+                @{ if (!string.IsNullOrEmpty(@Model.imageName))
+                    {
+                        <img src=@string.Format("/Uploads/Images/ItemImages/{0}",@Model.imageName) class="img-fluid blur-up lazyload bg-img" alt="">
+
+                    }
+                    else
+                    {
+                        <img src="~/Website/images/marketplace/2.jpg" class="img-fluid blur-up lazyload bg-img" alt="">
+                    }
+                }
+
             </a>
         </div>
         <div class="back">
             <a href="#">
-                <img src="~/Website/images/pro3/34.jpg"
-                     class="img-fluid blur-up lazyload bg-img" alt="">
+                @{ if (!string.IsNullOrEmpty(@Model.imageName))
+                    {
+                        <img src=@string.Format("/Uploads/Images/ItemImages/{0}",@Model.imageName) class="img-fluid blur-up lazyload bg-img" alt="">
+
+                    }
+                    else
+                    {
+                        <img src="~/Website/images/marketplace/2.jpg" class="img-fluid blur-up lazyload bg-img" alt="">
+                    }
+                }
+
             </a>
         </div>
         <div class="cart-info cart-wrap">

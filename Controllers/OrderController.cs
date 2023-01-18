@@ -118,6 +118,7 @@ namespace LaptopMart.Controllers
                         {
                             itemId = itemInCart.itemId,
                             orderId = order.orderId,
+                            itemImage = itemInCart.imageName,
                             totalPrice = itemInCart.totalPrice,
                             totalQty = itemInCart.totalQty
 

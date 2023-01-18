@@ -14,6 +14,8 @@ namespace LaptopMart.Models
         public Order order { get; set; }
 
         public int itemId { get; set; }
+        public string itemImage { get; set; }
+
         public Item item { get; set; }
 
         public int totalQty { get; set; }

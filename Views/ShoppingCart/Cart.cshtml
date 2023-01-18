@@ -42,7 +42,20 @@
                         @foreach(var item in Model.cartItemsList) { 
                         <tr class="cart-item-row">
                             <td>
-                                <a href="#"><img src="~/Website/images/pro3/1.jpg" alt=""></a>
+                                <a href="#">
+                                    @{ if (!string.IsNullOrEmpty(item.imageName))
+                                        {
+
+                                            <img src=@string.Format("/Uploads/Images/ItemImages/{0}",item.imageName)  alt="">
+                                           
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Website/images/pro3/1.jpg" alt="">
+                                        }
+                                    }
+
+                                </a>
                             </td>
                             <td>
                                 <a href="#">@item.itemName</a>

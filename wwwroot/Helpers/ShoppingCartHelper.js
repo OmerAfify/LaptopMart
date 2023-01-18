@@ -78,8 +78,7 @@ $(document).ready(function () {
 
     $(".add-To-Cart").on('click', function () {
 
-        console.log("written or clicked")
-       
+        
 
     let id = $(this).data("id");
 
@@ -189,7 +188,8 @@ function GetShoppingCart() {
                     let itemBox = `<li> <div class="media">
                                                         <a href="#">
                                                             <img alt="" class="mr-3"
-                                                                 src="/Website/images/fashion/product/1.jpg">
+          src=${ (item.imageName == null || item.imageName == "") ? "/Website/images/fashion/product/1.jpg" : "/Uploads/Images/ItemImages/"+item.imageName }>
+
                                                         </a>
                                                         <div class="media-body">
                                                             <a href="#">

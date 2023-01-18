@@ -49,9 +49,6 @@ namespace LaptopMart
                 Configuration.GetConnectionString("LapShop_DB_ConnString")
                 ));
 
-      
-
-
             //session config
             services.AddSession();
             services.AddHttpContextAccessor();
@@ -89,8 +86,6 @@ namespace LaptopMart
                };
            });
 
-
-        
 
 
             //DI registeration
@@ -146,7 +141,7 @@ namespace LaptopMart
 
             services.AddHangfireServer();
 
-            }
+        }
 
          public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

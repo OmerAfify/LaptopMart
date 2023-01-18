@@ -29,8 +29,20 @@
                 <div class="col-lg-4">
                     <div class="product-slick">
                         <div>
-                            <img src="~/Website/images/pro3/1.jpg" alt=""
-                                 class="img-fluid blur-up lazyload image_zoom_cls-0">
+                            @{ if (!string.IsNullOrEmpty(@Model.itemDetails.imageName))
+                                {
+                                    <img src=@string.Format("/Uploads/Images/ItemImages/{0}",@Model.itemDetails.imageName) alt=""
+                                         class="img-fluid blur-up lazyload image_zoom_cls-0">
+                                    
+                                }
+                                else
+                                {
+                                    <img src="~/Website/images/pro3/1.jpg" alt=""
+                                         class="img-fluid blur-up lazyload image_zoom_cls-0">
+                                }
+                            }
+
+
                         </div>
                         <div>
                             <img src="~/Website/images/pro3/2.jpg" alt=""
@@ -49,8 +61,20 @@
                         <div class="col-12 p-0">
                             <div class="slider-nav">
                                 <div>
-                                    <img src="~/Website/images/pro3/1.jpg" alt=""
-                                         class="img-fluid blur-up lazyload">
+                                    @{ if (!string.IsNullOrEmpty(@Model.itemDetails.imageName))
+                                        {
+                                            <img  src=@string.Format("/Uploads/Images/ItemImages/{0}",@Model.itemDetails.imageName) alt=""
+                                                 class="img-fluid blur-up lazyload">
+
+                                        }
+
+                                        else
+                                        {
+                                            <img src="~/Website/images/pro3/1.jpg" alt=""
+                                                 class="img-fluid blur-up lazyload">
+                                        }
+                                    }
+
                                 </div>
                                 <div>
                                     <img src="~/Website/images/pro3/2.jpg" alt=""
