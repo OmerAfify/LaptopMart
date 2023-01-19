@@ -1,5 +1,5 @@
 # LaptopMart
-## Web application for selling laptops. ( created with asp.net core MVC )
+## E-Commerce Web application for selling laptops. ( created with asp.net core MVC )
 
 Website includes the following set features implemented.
 
@@ -21,6 +21,18 @@ Website includes the following set features implemented.
 * Admin pannel to manage products CRUD operations
 * Image uploading for each product and category
 
+
+### Website
+
+
+https://user-images.githubusercontent.com/100993523/213406653-d199a95c-bfb8-4c86-98a5-664f5e67c94c.mp4
+
+
+
+### Admin-Panel
+
+
+https://user-images.githubusercontent.com/100993523/213406758-a291c748-75f7-4c6d-a574-142a984e6c8b.mp4
 
 
 
